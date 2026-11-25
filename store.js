@@ -224,17 +224,14 @@ function puzzlePhoto(product, print, preview, className, design = product[6] ?? 
 
 function productCard(product, print = product[5], featured = false) {
   const [name, colour, price, id] = product;
-  const buttonData = `data-product="${id}" data-print="${print}"`;
   const title = featured ? 'Puzzle № ' + print : name;
   const detail = featured ? puzzlePrints.get(print).label : colour;
   const preview = teePreview(product, print);
-  const puzzleLink = puzzlePhoto(product, print, preview, 'product-photo');
-  const photo = puzzleLink;
+  const photo = puzzlePhoto(product, print, preview, 'product-photo');
   return `
   <article class="product" data-item="${id}">
     ${photo}
     <div class="product-info"><h3>${title}</h3><span>${money.format(price)}</span><p>${detail}</p>${featured ? `<p>${colour}</p>` : ''}</div>
-    <button class="quick" ${buttonData} aria-label="Choose a size for ${name}, puzzle ${print}">Choose size <span aria-hidden="true">+</span></button>
   </article>`;
 }
 
@@ -340,12 +337,11 @@ if (lookbook) {
   for (const figure of lookbook.querySelectorAll('[data-worn-look]')) {
     const look = window.garmentLooks[figure.dataset.wornLook];
     const product = getProduct(look.product);
-    const [name, , , id, , print] = product;
+    const [name, , , , , print] = product;
     const preview = teePreview(product, print, 'ledger', look);
     figure.innerHTML = `${puzzlePhoto(product, print, preview, 'lookbook-photo', 'ledger')}
       <figcaption>
         <span>${name} · #${print}</span>
-        <button class="quick" type="button" data-product="${id}" data-print="${print}" aria-label="Choose a size for ${name}">Choose size <span aria-hidden="true">+</span></button>
       </figcaption>`;
   }
 }
@@ -426,12 +422,6 @@ function showBag(checkout = false) {
   if (!bagDialog.open) bagDialog.showModal();
 }
 
-for (const surface of [productGrid, hoodieGrid, lookbook]) {
-  surface?.addEventListener('click', event => {
-    const button = event.target.closest('button[data-product]');
-    if (button) showProduct(button.dataset.product, button.dataset.print);
-  });
-}
 document.querySelector('#open-bag').addEventListener('click', () => showBag());
 bagDialog.addEventListener('click', event => {
   const button = event.target.closest('button');
@@ -454,7 +444,7 @@ bagDialog.addEventListener('click', event => {
 });
 
 for (const dialog of [productDialog, bagDialog]) {
-  dialog.addEventListener('click', event => {
+  dialog?.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const bounds = dialog.getBoundingClientRect();
     if (event.clientX < bounds.left || event.clientX > bounds.right
