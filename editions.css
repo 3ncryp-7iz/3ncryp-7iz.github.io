@@ -211,14 +211,30 @@
 .puzzle-actions button { border-radius: 2px; font-size: .77rem; }
 .puzzle-board { width: min(100%, 25rem); box-shadow: none; }
 .puzzle-result {
+  position: relative;
   display: grid;
   justify-items: start;
   gap: .5rem;
 }
-.puzzle-result:has(.puzzle-feedback:not(:empty), .puzzle-stamp:not([hidden]), .promotion-choices:not([hidden])) {
-  margin-top: .75rem;
+.puzzle-result:has(.promotion-choices:not([hidden])) {
   padding-top: .75rem;
+}
+.puzzle-result:has(.puzzle-feedback:not(:empty), .puzzle-stamp:not([hidden])) {
+  padding-top: calc(1.5rem + 1px);
+}
+.puzzle-result::before {
+  content: "";
+  position: absolute;
+  inset: .75rem 0 auto;
   border-top: 1px solid var(--line);
+  opacity: 0;
+  pointer-events: none;
+}
+.puzzle-result:has(.puzzle-feedback:not(:empty), .puzzle-stamp:not([hidden]))::before {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .puzzle-result::before { transition: opacity .2s ease; }
 }
 .puzzle-result .puzzle-feedback {
   min-height: 0;
