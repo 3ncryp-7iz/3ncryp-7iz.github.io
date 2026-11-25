@@ -413,7 +413,7 @@
     function setZoom(zoomed) {
       shirtView.dataset.zoomed = String(zoomed);
       shirtZoom.setAttribute('aria-pressed', String(zoomed));
-      shirtZoom.textContent = zoomed ? 'Show full garment' : 'Zoom print';
+      shirtZoom.textContent = zoomed ? 'Show full item' : 'Zoom print';
     }
     setZoom(false);
     shirtZoom.addEventListener('click', () => setZoom(shirtView.dataset.zoomed !== 'true'));
