@@ -219,7 +219,7 @@ const featuredProduct = productGrid.getAttribute('data-featured-product');
 
 function puzzlePhoto(product, print, preview, className, design = product[6] ?? 'ledger') {
   const [name, , , id] = product;
-  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="Play puzzle ${print} on the ${name}">${preview}<span class="play-print-label" aria-hidden="true">Play puzzle ↗</span></a>`;
+  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="View ${name}, puzzle ${print}">${preview}</a>`;
 }
 
 function productCard(product, print = product[5], featured = false) {

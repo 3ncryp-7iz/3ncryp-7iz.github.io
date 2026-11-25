@@ -437,20 +437,7 @@
   .lookbook-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
-.puzzle-photo-link { display: block; position: relative; }
-.play-print-label {
-  display: none;
-  position: absolute;
-  right: .4rem;
-  bottom: .4rem;
-  padding: .35rem .5rem;
-  background: var(--paper-light);
-  color: var(--ink);
-  font: .72rem var(--sans);
-}
-@media (hover: hover) and (pointer: fine) and (min-width: 601px) {
-  .puzzle-photo-link:is(:hover, :focus-visible) .play-print-label { display: block; }
-}
+.puzzle-photo-link { display: block; }
 .puzzle-number { margin-bottom: .6rem; color: var(--accent); font: .78rem var(--mono); }
 
 .puzzle-shirt {
