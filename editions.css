@@ -210,23 +210,21 @@
 .puzzle-credit { font-size: .76rem; }
 .puzzle-actions button { border-radius: 2px; font-size: .77rem; }
 .puzzle-board { width: min(100%, 25rem); box-shadow: none; }
-/* Reserve the same space before and after a hint, checkmate, or promotion. */
 .puzzle-result {
   display: grid;
-  grid-template-rows: 3.6rem 1.6rem;
-  align-items: start;
+  justify-items: start;
+  gap: .5rem;
+}
+.puzzle-result:has(.puzzle-feedback:not(:empty), .puzzle-stamp:not([hidden]), .promotion-choices:not([hidden])) {
   margin-top: .75rem;
 }
-.has-promotion .puzzle-result { grid-template-rows: 3.6rem var(--control-height); }
 .puzzle-result .puzzle-feedback {
-  grid-area: 1 / 1;
-  block-size: 100%;
   min-height: 0;
   margin: 0;
-  overflow: auto;
   font-size: .86rem;
 }
-.puzzle-result :is(.puzzle-stamp, .promotion-choices) { grid-area: 2 / 1; justify-self: start; }
+/* Keep the empty live region mounted without reserving space for it. */
+.puzzle-result .puzzle-feedback:empty { position: absolute; }
 .puzzle-result .promotion-choices {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   width: min(100%, 19rem);
