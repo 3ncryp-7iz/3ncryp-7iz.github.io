@@ -238,6 +238,7 @@
     const fullBoard = readArchivedPuzzle(standard, '', false);
     const start = readArchivedPuzzle(standard, setupMoves, false, keep);
     const active = new Map();
+    let waveEnd = 0;
     for (const [id, square] of Object.entries(fullBoard.opening)) {
       const appearance = fullBoard.pieces[id];
       const token = document.createElement('span');
@@ -249,6 +250,20 @@
       const cell = squares.get(square);
       cell.append(token);
       cell.setAttribute('aria-label', square + ', ' + appearance[1]);
+      if (token.animate) {
+        const file = files.indexOf(square[0]);
+        const row = 8 - Number(square[1]);
+        const delay = (file * 2 + row) * 29;
+        const duration = 460;
+        const tilt = file % 2 ? 13 : -13;
+        token.animate([
+          { transform: `translateY(-155%) rotate(${tilt}deg) scale(.87)`, opacity: 0, easing: 'cubic-bezier(.55,.05,.85,.45)' },
+          { transform: 'translateY(7%) rotate(0deg) scale(1.06,.94)', opacity: 1, offset: .72, easing: 'ease-out' },
+          { transform: 'translateY(-8%) scale(.99,1.01)', offset: .87, easing: 'ease-in' },
+          { transform: 'translateY(0) scale(1)' }
+        ], { delay, duration, fill: 'backwards' });
+        waveEnd = Math.max(waveEnd, delay + duration);
+      }
     }
 
     function playPly(index) {
@@ -303,7 +318,7 @@
         if (start.line.length) playPly(0);
         else reset(false);
       }, 320);
-    }, 300);
+    }, waveEnd ? waveEnd + 100 : 300);
   }
 
   function move() {
