@@ -448,9 +448,8 @@
   color: var(--ink);
   font: .72rem var(--sans);
 }
-.puzzle-photo-link:is(:hover, :focus-visible) .play-print-label { display: block; }
-@media (hover: none) {
-  .puzzle-photo-link .play-print-label { display: block; }
+@media (hover: hover) and (pointer: fine) and (min-width: 601px) {
+  .puzzle-photo-link:is(:hover, :focus-visible) .play-print-label { display: block; }
 }
 .puzzle-number { margin-bottom: .6rem; color: var(--accent); font: .78rem var(--mono); }
 

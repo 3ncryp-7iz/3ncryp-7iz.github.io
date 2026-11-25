@@ -1,3 +1,5 @@
+const storePath = document.currentScript?.src ? new URL('.', document.currentScript.src).href : '../';
+
 const products = window.catalog;
 const productDialog = document.querySelector('#product-dialog');
 const bagDialog = document.querySelector('#bag-dialog');
@@ -141,12 +143,12 @@ function darkGarmentBoard(position, id, x, y, size) {
       }
       const type = char.toLowerCase();
       const side = type === char ? 'black' : 'white';
-      artwork.push(`<image href="../assets/chess-template/${side}-${kinds[type]}.png" x="${column * 96}" y="${row * 96}" width="96" height="96" filter="url(#piece-ink-${id})"/>`);
+      artwork.push(`<image href="${storePath}assets/chess-template/${side}-${kinds[type]}.png" x="${column * 96}" y="${row * 96}" width="96" height="96" filter="url(#piece-ink-${id})"/>`);
       column++;
     }
   }
   return `<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="0 0 768 768" opacity=".9">
-    <image href="../assets/chess-template/board.png" width="768" height="768" filter="url(#print-ink-${id})"/>
+    <image href="${storePath}assets/chess-template/board.png" width="768" height="768" filter="url(#print-ink-${id})"/>
     ${artwork.join('')}
   </svg>`;
 }
@@ -178,9 +180,9 @@ function teePreview(product, print, design = product[6] ?? 'classic', look, incl
   const appearance = look ? 'Digital on-model mockup of ' : '';
   const diagram = !includeBoard ? ''
     : lightInkGarments.has(id) ? darkGarmentBoard(position, id, x, y, size)
-      : `<image href="../assets/puzzles/${file}" x="${x}" y="${y}" width="${size}" height="${size}" filter="url(#print-ink-${id})" opacity=".9"/>`;
+      : `<image href="${storePath}assets/puzzles/${file}" x="${x}" y="${y}" width="${size}" height="${size}" filter="url(#print-ink-${id})" opacity=".9"/>`;
   return `<svg class="tee-preview" role="img" aria-label="${appearance}${name} with puzzle ${print}: ${label}, ${printDesigns.get(design)}" viewBox="0 0 512 512" width="512" height="512">
-    <image href="../assets/${photo.file}" width="512" height="512"${photo.filter ? ` filter="${photo.filter}"` : ''}/>
+    <image href="${storePath}assets/${photo.file}" width="512" height="512"${photo.filter ? ` filter="${photo.filter}"` : ''}/>
     <g transform="${transform}">
       ${diagram}
       ${ornament}
@@ -217,7 +219,7 @@ const featuredProduct = productGrid.getAttribute('data-featured-product');
 
 function puzzlePhoto(product, print, preview, className, design = product[6] ?? 'ledger') {
   const [name, , , id] = product;
-  return `<a class="${className} puzzle-photo-link" href="../puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="Play puzzle ${print} on the ${name}">${preview}<span class="play-print-label" aria-hidden="true">Play puzzle ↗</span></a>`;
+  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="Play puzzle ${print} on the ${name}">${preview}<span class="play-print-label" aria-hidden="true">Play puzzle ↗</span></a>`;
 }
 
 function productCard(product, print = product[5], featured = false) {

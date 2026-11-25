@@ -1,9 +1,11 @@
 (() => {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const puzzle = document.querySelector('.chess-puzzle');
-  const stamp = puzzle.querySelector('.puzzle-stamp');
-  puzzle.addEventListener('puzzle:solved', () => { stamp.hidden = false; });
-  puzzle.addEventListener('puzzle:reset', () => { stamp.hidden = true; });
+  const stamp = puzzle?.querySelector('.puzzle-stamp');
+  if (stamp) {
+    puzzle.addEventListener('puzzle:solved', () => { stamp.hidden = false; });
+    puzzle.addEventListener('puzzle:reset', () => { stamp.hidden = true; });
+  }
 
   const menu = document.querySelector('.edition-menu');
   if (menu) {
