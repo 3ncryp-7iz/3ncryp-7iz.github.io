@@ -334,11 +334,7 @@
     busy = false;
     hintButton.disabled = true;
     showButton.disabled = true;
-    if (solvedByPlayer) {
-      feedback.textContent = notation + (setup
-        ? ' Checkmate. You solved the printed puzzle.'
-        : ' Checkmate. The white king covers the escape squares.');
-    }
+    if (solvedByPlayer) feedback.textContent = notation;
     section.dispatchEvent(new Event('puzzle:solved'));
   }
 
