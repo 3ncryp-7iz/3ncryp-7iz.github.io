@@ -29,7 +29,6 @@
   const files = 'abcdefgh';
   const setup = section.getAttribute('data-position');
   const startingSide = setup?.split(' ')[1] === 'b' ? 'Black' : 'White';
-  const opponent = startingSide === 'White' ? 'Black' : 'White';
   const playerPrefix = startingSide.toLowerCase() + '-';
   const promotionChoices = section.querySelector('[data-promotion]');
   const { opening, pieces, line } = setup
@@ -196,7 +195,7 @@
     busy = false;
     hintButton.disabled = false;
     showButton.disabled = false;
-    feedback.textContent = startingSide + ' to move. Choose a piece, then its destination.';
+    feedback.textContent = '';
     layOut(entrance);
     section.dispatchEvent(new Event('puzzle:reset'));
   }
@@ -229,7 +228,6 @@
     hintButton.disabled = true;
     showButton.disabled = true;
     board.setAttribute('aria-busy', 'true');
-    feedback.textContent = 'Setting up the puzzle…';
     for (const token of tokens.values()) token.remove();
     for (const [square, cell] of squares) {
       cell.setAttribute('aria-label', square);
@@ -332,13 +330,15 @@
     return notation;
   }
 
-  function finish(notation) {
+  function finish(notation, solvedByPlayer = true) {
     busy = false;
     hintButton.disabled = true;
     showButton.disabled = true;
-    feedback.textContent = notation + (setup
-      ? ' Checkmate. You solved the printed puzzle.'
-      : ' Checkmate. The white king covers the escape squares.');
+    if (solvedByPlayer) {
+      feedback.textContent = notation + (setup
+        ? ' Checkmate. You solved the printed puzzle.'
+        : ' Checkmate. The white king covers the escape squares.');
+    }
     section.dispatchEvent(new Event('puzzle:solved'));
   }
 
@@ -350,12 +350,11 @@
     }
     busy = true;
     hintButton.disabled = true;
-    feedback.textContent = played + '. ' + opponent + ' to move…';
+    feedback.textContent = '';
     timer = setTimeout(() => {
-      const reply = move();
+      move();
       busy = false;
       hintButton.disabled = false;
-      feedback.textContent = reply + '. ' + startingSide + ' to move.';
     }, reduceMotion.matches ? 0 : 550);
   }
 
@@ -365,24 +364,13 @@
     const playerPiece = Object.keys(position).find(id => id.startsWith(playerPrefix) && position[id] === square);
     if (playerPiece) {
       selected = selected === square ? null : square;
-      feedback.textContent = selected
-        ? appearances[playerPiece][1] + ' selected. Choose its destination.'
-        : 'Choose a ' + startingSide.toLowerCase() + ' piece.';
       updateLabels();
       return;
     }
-    if (!selected) {
-      feedback.textContent = 'Choose a ' + startingSide.toLowerCase() + ' piece first.';
-      return;
-    }
-    if (selected !== from || square !== to) {
-      feedback.textContent = 'That does not match the recorded solution. Try again, or use the hint.';
-      return;
-    }
+    if (selected !== from || square !== to) return;
     if (changes?.promote && promotionChoices) {
       pendingPromotion = true;
       promotionChoices.hidden = false;
-      feedback.textContent = 'Choose a piece to promote the pawn to.';
       promotionChoices.querySelector('button').focus();
       return;
     }
@@ -391,11 +379,7 @@
 
   promotionChoices?.addEventListener('click', event => {
     const option = event.target.closest('[data-promote]');
-    if (!option || !pendingPromotion) return;
-    if (option.dataset.promote !== line[ply][5].promote) {
-      feedback.textContent = 'That promotion does not match the recorded solution. Try another piece.';
-      return;
-    }
+    if (!option || !pendingPromotion || option.dataset.promote !== line[ply][5].promote) return;
     pendingPromotion = false;
     promotionChoices.hidden = true;
     squares.get(line[ply][2]).focus();
@@ -475,10 +459,9 @@
     function play() {
       const notation = move();
       if (ply === line.length) {
-        finish(notation);
+        finish(notation, false);
         return;
       }
-      feedback.textContent = 'Solution so far  ' + line.slice(0, ply).map(step => step[3]).join(' · ');
       if (reduceMotion.matches) play();
       else timer = setTimeout(play, 630);
     }

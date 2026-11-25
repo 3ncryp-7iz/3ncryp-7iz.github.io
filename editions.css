@@ -567,8 +567,6 @@
 .setup-controls { display: flex; flex-wrap: wrap; gap: .6rem; margin-inline-end: auto; }
 .setup-controls:not(:has(button:not([hidden]))) { display: none; }
 
-.mobile-play-instructions { display: none; font-size: .84rem; }
-
 /* Keep the folio and full-height cart clear of phone cutouts and home indicators. */
 .postal {
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
@@ -609,8 +607,6 @@
   .shirt-viewport[data-zoomed="true"] .shirt-surface {
     transform: scale(calc(var(--print-zoom, 2) * 1.25));
   }
-  [data-playable-print] .problem-intro p:last-of-type { margin-top: .3rem; }
-  .mobile-play-instructions { display: block; }
 }
 
 @media (max-width: 380px) {
