@@ -217,6 +217,8 @@
 }
 .puzzle-result:has(.puzzle-feedback:not(:empty), .puzzle-stamp:not([hidden]), .promotion-choices:not([hidden])) {
   margin-top: .75rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--line);
 }
 .puzzle-result .puzzle-feedback {
   min-height: 0;
