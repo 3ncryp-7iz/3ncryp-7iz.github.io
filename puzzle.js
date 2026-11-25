@@ -431,7 +431,7 @@
       shirtZoom.setAttribute('aria-pressed', String(zoomed));
       shirtZoom.textContent = zoomed ? 'Show full garment' : 'Zoom print';
     }
-    setZoom(matchMedia('(max-width: 600px)').matches);
+    setZoom(false);
     shirtZoom.addEventListener('click', () => setZoom(shirtView.dataset.zoomed !== 'true'));
 
     let dragging = false;
