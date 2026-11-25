@@ -453,9 +453,14 @@
   --shirt-fabric: #53161d;
   position: relative;
   color: var(--shirt-ink);
-  transform-origin: 50% var(--print-centre-y, 46.875%);
+  --print-centre-x: 50%;
+  --print-centre-y: 46.875%;
+  transform-origin: var(--print-centre-x) var(--print-centre-y);
 }
-.shirt-viewport[data-zoomed="true"] .shirt-surface { transform: scale(var(--print-zoom, 2)); }
+.shirt-viewport[data-zoomed="true"] .shirt-surface {
+  transform: translate(calc(50% - var(--print-centre-x)), calc(50% - var(--print-centre-y)))
+    scale(calc(var(--print-zoom, 2) * var(--print-zoom-factor, 1)));
+}
 [data-edition="problem-sheet"] .shirt-surface .puzzle-board {
   position: absolute;
   top: var(--print-top, 28.125%);
@@ -591,9 +596,7 @@
   .sizes span { min-width: var(--control-height); min-height: var(--control-height); }
   .purchase-options { align-items: start; }
   .purchase-summary .button { align-self: end; min-height: var(--control-height); }
-  .shirt-viewport[data-zoomed="true"] .shirt-surface {
-    transform: scale(calc(var(--print-zoom, 2) * 1.25));
-  }
+  .shirt-viewport { --print-zoom-factor: 1.25; }
 }
 
 @media (max-width: 380px) {

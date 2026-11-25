@@ -297,6 +297,7 @@ if (productGrid.hasAttribute('data-ledger-collection')) {
     surface.style.setProperty('--print-top', y / 512 * 100 + '%');
     surface.style.setProperty('--print-width', size / 512 * 100 + '%');
     surface.style.setProperty('--print-zoom', String(384 / size));
+    surface.style.setProperty('--print-centre-x', (x + size / 2) / 512 * 100 + '%');
     surface.style.setProperty('--print-centre-y', (y + size / 2) / 512 * 100 + '%');
     colourControls.querySelector('[data-colour-label]').textContent =
       (kind === 'tee' ? 'T-shirt' : 'Hoodie') + ' colour · ' + available.length + ' options';
