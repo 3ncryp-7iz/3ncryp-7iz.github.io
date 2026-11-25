@@ -1,0 +1,118 @@
+.folio-page {
+  --folio-paper: #f2e5d5;
+  --folio-edge: #efe1d1;
+  --folio-rule-ink: #a7836d;
+  --folio-buffer: clamp(7px, .95vw, 13px);
+  --folio-inner-radius: clamp(4px, .85vw, 12px);
+  --folio-radius: calc(var(--folio-inset) + var(--folio-inner-radius));
+  --folio-rule: clamp(3px, .48vw, 7px);
+  --folio-corner: clamp(46px, 8vw, 100px);
+  /* The rail stems meet the corner stems at 19 of 160 SVG units. */
+  --folio-band: calc(var(--folio-corner) * .2375);
+  --folio-inset: calc(var(--folio-rule) + 1px + var(--folio-band) + var(--folio-buffer));
+  /* Leave room for the king medallions where the frame turns. */
+  --folio-block-inset: max(var(--folio-inset), calc(var(--folio-rule) + 1px + var(--folio-corner) * .57 + var(--folio-buffer)));
+  --folio-join: calc(var(--folio-corner) - 1px);
+  position: relative;
+  isolation: isolate;
+  max-width: 86rem;
+  margin-inline: auto;
+  padding: var(--folio-block-inset) var(--folio-inset);
+  border-radius: var(--folio-radius);
+  background: var(--folio-edge);
+  box-shadow: 0 4px 16px #6b453314;
+}
+.folio-page::before {
+  position: absolute;
+  z-index: -1;
+  inset: var(--folio-rule);
+  border-radius: calc(var(--folio-radius) - var(--folio-rule));
+  background: var(--page);
+  box-shadow: inset 0 0 calc(var(--folio-buffer) * 2.7) var(--folio-buffer) var(--folio-paper);
+  pointer-events: none;
+  content: "";
+}
+.folio-page > :is(.site-header, main, footer) {
+  position: relative;
+  z-index: 3;
+  background: var(--page);
+}
+.folio-page > .site-header { border-radius: var(--folio-inner-radius) var(--folio-inner-radius) 0 0; }
+.folio-page > footer { border-radius: 0 0 var(--folio-inner-radius) var(--folio-inner-radius); }
+.folio-art {
+  position: absolute;
+  z-index: 2;
+  inset: var(--folio-rule);
+  border: 1px solid var(--folio-rule-ink);
+  opacity: .74;
+  border-radius: calc(var(--folio-radius) - var(--folio-rule));
+  pointer-events: none;
+}
+.folio-corner {
+  --corner-turn: scale(1);
+  position: absolute;
+  width: var(--folio-corner);
+  aspect-ratio: 1;
+  background: url(assets/chess-folio-corner.svg) center / contain no-repeat;
+  transform: var(--corner-turn);
+}
+.folio-corner::before {
+  position: absolute;
+  top: calc(-1 * var(--folio-rule));
+  left: calc(-1 * var(--folio-rule));
+  width: clamp(20px, 3vw, 39px);
+  aspect-ratio: 1;
+  background: url(assets/folio-curl.svg) center / contain no-repeat;
+  content: "";
+}
+.folio-corner--top-left { top: 0; left: 0; }
+.folio-corner--top-right { --corner-turn: scaleX(-1); top: 0; right: 0; }
+.folio-corner--bottom-right { --corner-turn: rotate(180deg); bottom: 0; right: 0; }
+.folio-corner--bottom-left { --corner-turn: scaleY(-1); bottom: 0; left: 0; }
+
+.folio-piece {
+  position: absolute;
+  /* Each corner transform is its own inverse. Keep the pieces upright. */
+  transform: translate(-50%, -50%) var(--corner-turn);
+  background: center / contain no-repeat;
+}
+.folio-piece--king {
+  top: 33%;
+  left: 33%;
+  width: 47%;
+  aspect-ratio: 1;
+  background-image: url(assets/chess-folio-king.svg);
+}
+.folio-piece--knight, .folio-piece--rook {
+  width: 19%;
+  aspect-ratio: 24 / 34;
+}
+.folio-piece--knight {
+  top: 65%;
+  left: 22%;
+  background-image: url(assets/chess-folio-knight.svg);
+}
+.folio-piece--rook {
+  top: 22%;
+  left: 65%;
+  background-image: url(assets/chess-folio-rook.svg);
+}
+.folio-band { position: absolute; }
+.folio-band--left, .folio-band--right {
+  inset-block: var(--folio-join);
+  width: var(--folio-band);
+  background-image: url(assets/chess-folio-vine.svg);
+  background-size: 100% calc(var(--folio-band) * 4.1);
+  background-repeat: no-repeat round;
+}
+.folio-band--left { left: 0; }
+.folio-band--right { right: 0; transform: scaleX(-1); }
+.folio-band--top, .folio-band--bottom {
+  inset-inline: var(--folio-join);
+  height: var(--folio-band);
+  background-image: url(assets/chess-folio-frieze.svg);
+  background-size: calc(var(--folio-band) * 4.1) 100%;
+  background-repeat: round no-repeat;
+}
+.folio-band--top { top: 0; }
+.folio-band--bottom { bottom: 0; }

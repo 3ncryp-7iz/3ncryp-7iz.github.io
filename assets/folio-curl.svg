@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="crease" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset=".22" stop-color="#8b6149" stop-opacity="0"/>
+      <stop offset=".69" stop-color="#8b6149" stop-opacity=".23"/>
+      <stop offset="1" stop-color="#8b6149" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#e0c7a9"/>
+      <stop offset=".49" stop-color="#f1dfc5"/>
+      <stop offset=".82" stop-color="#fff9ee"/>
+      <stop offset="1" stop-color="#e5ccad"/>
+    </linearGradient>
+  </defs>
+  <path d="M3 43C12 23 26 13 45 3C35 12 32 19 34 33C22 31 12 36 3 43Z" fill="url(#crease)"/>
+  <path d="M2 39C7 20 20 7 39 2C30 9 25 18 28 28C18 25 9 30 2 39Z" fill="url(#paper)"/>
+  <path d="M2 39C9 30 18 25 28 28C25 18 30 9 39 2" fill="none" stroke="#a7836d" stroke-opacity=".62" stroke-width=".9"/>
+  <path d="M6 32C13 25 20 23 24 24C23 20 25 13 32 6" fill="none" stroke="#fff9ee" stroke-opacity=".77" stroke-width=".7"/>
+</svg>
