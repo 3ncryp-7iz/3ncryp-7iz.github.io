@@ -80,7 +80,7 @@
         if (!card.hidden) visible++;
         grid.append(card);
       }
-      count.textContent = visible === 1 ? '1 garment' : visible + ' garments';
+      count.textContent = visible === 1 ? '1 Item available' : visible + ' Items available';
     }
 
     garment.addEventListener('change', updateCatalog);
