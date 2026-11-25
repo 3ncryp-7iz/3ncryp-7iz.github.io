@@ -6,7 +6,6 @@
   const [number, label] = record;
   const product = window.catalog.find(item => item[3] === (params.get('product') ?? params.get('colour'))) ?? window.catalog[0];
   const [name, , , id] = product;
-  const style = ['classic', 'stamp', 'ledger'].includes(params.get('style')) ? params.get('style') : product[6];
   const [fen, moves] = window.puzzlePositions[number];
   const [side, mate] = label.split(' · ');
   const count = Number(mate.split(' ').at(-1));
@@ -23,7 +22,7 @@
   page.classList.toggle('has-promotion', moves.split(' ').some(move => move.length === 5));
   grid.dataset.featuredProduct = id;
   grid.dataset.featuredPrint = number;
-  grid.dataset.featuredDesign = style;
+  grid.dataset.featuredDesign = 'ledger';
   document.title = 'Puzzle ' + number + ' · ' + name + ' — ChessCo - My enterprise mwhahaha';
   page.querySelector('[data-puzzle-number]').textContent = 'Puzzle № ' + number;
   page.querySelector('#puzzle-title').textContent = 'Mate in ' + summary + '.';

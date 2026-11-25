@@ -234,7 +234,7 @@ function productCard(product, print = product[5], featured = false) {
   <article class="product" data-item="${id}">
     ${photo}
     <div class="product-info"><h3>${title}</h3><span>${money.format(price)}</span><p>${detail}</p>${featured ? `<p>${colour}</p>` : ''}</div>
-    <button class="quick" ${buttonData} aria-label="Choose a size for ${name}, puzzle ${print}">${featured ? 'Choose size' : 'Choose your print'} <span aria-hidden="true">+</span></button>
+    <button class="quick" ${buttonData} aria-label="Choose a size for ${name}, puzzle ${print}">Choose size <span aria-hidden="true">+</span></button>
   </article>`;
 }
 
@@ -379,39 +379,24 @@ productGrid.addEventListener('submit', event => {
   addToBag(product, print, design, new FormData(form).get('size'), form.querySelector('#size-status'));
 });
 
-function showProduct(id, requestedPrint, requestedDesign) {
+function showProduct(id, requestedPrint) {
   const product = getProduct(id);
-  const [name, colour, price, , , defaultPrint, defaultDesign = 'classic'] = product;
+  const [name, colour, price, , , defaultPrint] = product;
   const print = puzzlePrints.has(requestedPrint) ? requestedPrint : defaultPrint;
-  const design = printDesigns.has(requestedDesign) ? requestedDesign : defaultDesign;
+  const design = 'ledger';
   productDialog.innerHTML = `${closeButton}
     <div class="product-visual">${teePreview(product, print, design)}</div>
     <div class="product-detail"><p class="eyebrow">${colour}</p><h2 id="product-title">${name}</h2>
       <p>${money.format(price)}</p>
       <form id="add-form">
-        <label class="print-field">Puzzle print
-          <select name="print">${printOptions(print)}</select>
-        </label>
-        <label class="print-field">Print style
-          <select name="design">${designOptions(design)}</select>
-        </label>
         ${sizeFields()}
         <p id="size-status" role="status"></p>
         <button type="submit" class="button">Add to cart <span aria-hidden="true">+</span></button>
       </form>
     </div>`;
-  const printSelect = productDialog.querySelector('select[name="print"]');
-  const designSelect = productDialog.querySelector('select[name="design"]');
-  function updatePreview() {
-    productDialog.querySelector('.product-visual').innerHTML = teePreview(product, printSelect.value, designSelect.value);
-  }
-  printSelect.addEventListener('change', updatePreview);
-  designSelect.addEventListener('change', updatePreview);
   productDialog.querySelector('#add-form').addEventListener('submit', event => {
     event.preventDefault();
     const size = new FormData(event.currentTarget).get('size');
-    const print = printSelect.value;
-    const design = designSelect.value;
     addToBag(id, print, design, size, productDialog.querySelector('#size-status'), () => productDialog.close());
   });
   productDialog.showModal();
@@ -443,7 +428,7 @@ function showBag(checkout = false) {
 for (const surface of [productGrid, hoodieGrid, lookbook]) {
   surface?.addEventListener('click', event => {
     const button = event.target.closest('button[data-product]');
-    if (button) showProduct(button.dataset.product, button.dataset.print, button.dataset.design);
+    if (button) showProduct(button.dataset.product, button.dataset.print);
   });
 }
 document.querySelector('#open-bag').addEventListener('click', () => showBag());
