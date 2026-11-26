@@ -219,7 +219,12 @@
   margin-top: 1.5rem;
   font: .75rem var(--mono);
 }
-.streetwear .catalogue-pages--top:not([hidden]) { margin: 0 0 1.25rem; }
+.streetwear .catalogue-pages--top:not([hidden]) {
+  justify-content: flex-start;
+  gap: .5rem;
+  margin: 0;
+}
+.streetwear .catalogue-pages--top [data-catalog-page-status] { white-space: nowrap; }
 .streetwear .catalogue-pages button {
   min-height: 44px;
   padding-inline: .65rem;
