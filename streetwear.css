@@ -138,11 +138,16 @@
 
 /* A transparent tile shows the page colour through either treatment. */
 [data-checker-products] .product-photo {
-  background-image: var(--tile-mark, none);
-  background-size: 8px 8px;
-  image-rendering: pixelated;
+  --hatch-period: 5.656854249px;
+  --hatch-width: 1.414213562px;
+  --hatch-start: calc(var(--hatch-period) - var(--hatch-width));
+  --hatch-feather: .3px;
+  --tile-lines: repeating-linear-gradient(135deg,
+    transparent 0 var(--hatch-start),
+    #ffffff24 calc(var(--hatch-start) + var(--hatch-feather)) calc(var(--hatch-period) - var(--hatch-feather)),
+    transparent var(--hatch-period));
+  background: var(--tile-mark, transparent);
 }
-[data-checker-products] .product-photo .tee-preview { image-rendering: auto; }
 [data-checker-products] .product-photo .tee-preview,
 .streetwear .shirt-art .tee-preview {
   background: transparent;
@@ -154,14 +159,14 @@
     :nth-child(8n + 4 of .product:not([hidden])),
     :nth-child(8n + 5 of .product:not([hidden])),
     :nth-child(8n + 7 of .product:not([hidden]))
-  ) .product-photo { --tile-mark: url(assets/catalogue-hatch.png); }
+  ) .product-photo { --tile-mark: var(--tile-lines); }
 }
 
 @media (width <= 920px) {
   [data-checker-products] .product:is(
     :nth-child(4n + 2 of .product:not([hidden])),
     :nth-child(4n + 3 of .product:not([hidden]))
-  ) .product-photo { --tile-mark: url(assets/catalogue-hatch.png); }
+  ) .product-photo { --tile-mark: var(--tile-lines); }
 }
 
 .shop-shell {
