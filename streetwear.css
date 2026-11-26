@@ -219,6 +219,7 @@
   margin-top: 1.5rem;
   font: .75rem var(--mono);
 }
+.streetwear .catalogue-pages--top:not([hidden]) { margin: 0 0 1.25rem; }
 .streetwear .catalogue-pages button {
   min-height: 44px;
   padding-inline: .65rem;

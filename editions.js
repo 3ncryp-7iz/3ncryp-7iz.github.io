@@ -66,10 +66,13 @@
     const pageSize = document.querySelector('#catalog-page-size');
     const count = document.querySelector('#catalog-count');
     const heading = document.querySelector('#catalogue-title');
-    const pager = document.querySelector('#catalog-pages');
-    const previous = document.querySelector('#catalog-previous');
-    const next = document.querySelector('#catalog-next');
-    const pageStatus = document.querySelector('#catalog-page-status');
+    const catalogue = document.querySelector('#collection');
+    const pagers = [...catalogue.querySelectorAll('[data-catalog-pages]')].map(nav => ({
+      nav,
+      previous: nav.querySelector('[data-page-step="-1"]'),
+      next: nav.querySelector('[data-page-step="1"]'),
+      status: nav.querySelector('[data-catalog-page-status]')
+    }));
     const hoodieLook = document.querySelector('[data-hoodie-look]');
     const soldPicker = document.querySelector('#preview-sold');
     const desktop = matchMedia('(width > 920px)');
@@ -107,10 +110,12 @@
         count.textContent = available === 1 ? '1 Item available' : available + ' Items available';
       }
       if (hoodieLook) hoodieLook.hidden = !isHoodie;
-      pager.hidden = pageCount === 1;
-      previous.disabled = page === 0;
-      next.disabled = page === pageCount - 1;
-      pageStatus.textContent = 'Page ' + (page + 1) + ' of ' + pageCount;
+      for (const { nav, previous, next, status } of pagers) {
+        nav.hidden = pageCount === 1;
+        previous.disabled = page === 0;
+        next.disabled = page === pageCount - 1;
+        status.textContent = 'Page ' + (page + 1) + ' of ' + pageCount;
+      }
     }
 
     for (const control of [garment, mate, pageSize]) {
@@ -122,10 +127,13 @@
     function changePage(step) {
       page += step;
       renderCatalogue();
-      heading.focus();
+      heading.focus({ preventScroll: true });
+      catalogue.scrollIntoView({ block: 'start', behavior: 'instant' });
     }
-    previous.addEventListener('click', () => changePage(-1));
-    next.addEventListener('click', () => changePage(1));
+    for (const { previous, next } of pagers) {
+      previous.addEventListener('click', () => changePage(-1));
+      next.addEventListener('click', () => changePage(1));
+    }
 
     for (const print of puzzlePrints.keys()) soldPicker.add(new Option('No. ' + print, print));
     soldPicker.value = [...previewSold].find(print => puzzlePrints.has(print)) ?? '';
