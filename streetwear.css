@@ -21,6 +21,7 @@
   grid-template-areas: "brand navigation actions";
   gap: .5rem;
   padding-block: .75rem;
+  border-top: 0;
 }
 .streetwear .wordmark {
   font: 700 clamp(1.1rem, 2.5vw, 1.65rem)/1 var(--sans);
