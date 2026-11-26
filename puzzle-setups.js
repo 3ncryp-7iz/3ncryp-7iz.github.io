@@ -10,7 +10,7 @@ window.puzzleSetups = {
   },
   "003": {
     "keep": "a1 e1 h1 a2 c2 d2 f2 g2 h2 a7 b7 c7 g7 h7 a8 d8 e8 h8",
-    "moves": "h1f1 e8f8 d2c3 c7c6 e1e2 f8g8 f1b1 d8g5 e2f1 a8f8 b1b4 f8f3 a1e1 g8f7 f1g1 h8d8 b4f4 f7g8 d8d1 f4b4 g8h8 f3f8 b4f4"
+    "moves": "h1f1 e8f8 d2c3 c7c6 e1e2 f8g8 f1b1 d8g5 e2f1 a8f8 b1b4 f8f3 a1e1 g8f7 f1g1 h8d8 b4f4 f7g8 f4b4 f3f8 b4f4 g8h8 d8d1"
   },
   "004": {
     "keep": "e1 h1 f2 g2 h2 f7 h7 a8 e8",
@@ -18,27 +18,27 @@ window.puzzleSetups = {
   },
   "005": {
     "keep": "c1 d1 e1 b2 e2 f2 g2 h2 b7 g7 h7 d8 e8 f8 g8 h8",
-    "moves": "b2b3 g7g5 c1b2 b7b5 d1d6 d8c8 g2g3 f8e7 d6h6 g8f6 h2h4 h7g6 e1f1 f6d5 f1g1 e8f8 h8h7 f8g8 h7f7"
+    "moves": "b2b3 g7g5 c1b2 b7b5 d1d6 d8c8 g2g3 f8e7 d6h6 g8f6 h2h4 h7g6 e1f1 f6d5 f1g1 e8f8 f8g8 h8h7 h7f7"
   },
   "006": {
     "keep": "a1 e1 h1 c2 d2 e2 d7 h7 a8 e8 g8",
-    "moves": "d2d4 g8f6 c2c4 h7h5 a1a6 e8e7 e2e4 a8g8 e4e5 g8g4 e1e2 f6e4 h1b1 e2e3 e3f4 f4f5 b1b5"
+    "moves": "d2d4 g8f6 c2c4 h7h5 a1a6 e8e7 e2e4 a8g8 e4e5 g8g4 e1e2 f6e4 h1b1 b1b5 e2e3 e3f4 f4f5"
   },
   "007": {
     "keep": "a1 e1 h1 b2 f2 g2 h2 a7 b7 g7 h7 a8 b8 e8 h8",
-    "moves": "a1c1 h7h6 c1c7 h8g8 e1d1 e8f8 d1c1 b8c6 h1d1 c6d4 d4b5 d1d6 a8e8 e8e4 e4b4"
+    "moves": "a1c1 h7h6 c1c7 h8g8 e1d1 b8c6 d1c1 c6d4 h1d1 d4b5 d1d6 e8f8 a8e8 e8e4 e4b4"
   },
   "008": {
     "keep": "a1 e1 g1 a2 b2 c2 f2 a7 b7 c7 f7 a8 b8 e8",
-    "moves": "g1e2 a7a5 b2b3 f7f5 e1d2 c7c6 c2c4 b8a6 c4c5 b7b5 d2e3 e8e7 a1d1 a8d8 d1d7 b5b4 a6c7 c7b5 d7a7 e7f6 b5a3 f6g5 g5g4"
+    "moves": "g1e2 a7a5 b2b3 f7f5 e1d2 c7c6 c2c4 b8a6 c4c5 b7b5 d2e3 a8d8 a1d1 b5b4 d1d7 a6c7 c7b5 d7a7 b5a3 e8e7 e7f6 f6g5 g5g4"
   },
   "009": {
     "keep": "a1 c1 e1 h1 b2 c2 e2 f2 g2 h2 a8 b8 c8 e8 h8 a7 b7 c7 f7 g7 h7",
-    "moves": "e2e3 b7c6 c1d2 e8e7 d2a5 h8e8 c2c4 e8d8 b2b3 c8f5 g2g4 e7f8 f2f3 f8g8 h2h4 d8d2 h1h3 b8d7 h3g3 d2h2 a1d1 d7b6 e1f1 a8d8 f1g1 d8d2 d2a2 f5d3 d3e2 a7a6"
+    "moves": "e2e3 b7c6 c1d2 e8e7 d2a5 h8e8 c2c4 e8d8 b2b3 c8f5 g2g4 e7f8 f2f3 f8g8 h2h4 d8d2 h1h3 b8d7 h3g3 d2h2 a1d1 d7b6 e1f1 f5d3 f1g1 d3e2 a7a6 a8d8 d8d2 d2a2"
   },
   "010": {
     "keep": "d1 e1 g2 h2 c7 d7 f7 g7 h7 e8",
-    "moves": "d1b1 d7d5 h2h3 e8e7 b1b8 c7c5 e1d1 e7e6 c5c4 c4c3 d5d4 e6e5 d4d3 d3d2 e5e4 e4d3"
+    "moves": "d1b1 d7d5 h2h3 c7c5 b1b8 c5c4 e1d1 c4c3 d5d4 d4d3 d3d2 e8e7 e7e6 e6e5 e5e4 e4d3"
   },
   "011": {
     "keep": "d1 e1 f1 g1 e2 f2 g2 d7 g7 a8 c8 d8 e8 h8",
@@ -50,7 +50,7 @@ window.puzzleSetups = {
   },
   "013": {
     "keep": "c1 e1 f1 h1 a2 b2 c2 f2 a7 b7 c7 e7 g7 h7 a8 e8 f8 h8",
-    "moves": "f1d3 h7h6 d3g6 a7a5 c1f4 e7e5 a2a3 e5e4 c2c4 a8d8 c4c5 d8d4 f4d6 c7c6 e1d1 e8e7 d1c2 e7e6 h1e1 f8e7 e7f6 h8d8 e6d5"
+    "moves": "f1d3 h7h6 d3g6 a7a5 c1f4 e7e5 a2a3 e5e4 c2c4 a8d8 c4c5 d8d4 f4d6 c7c6 e1d1 f8e7 d1c2 e7f6 h1e1 e8e7 h8d8 e7e6 e6d5"
   },
   "014": {
     "keep": "a1 b1 d1 e1 h1 a2 b2 f2 g2 a7 b7 d7 e7 h7 a8 d8 e8 h8",
@@ -58,11 +58,11 @@ window.puzzleSetups = {
   },
   "015": {
     "keep": "a1 c1 d1 e1 a2 b2 c2 d2 f2 h2 a7 b7 c7 h7 a8 c8 d8 e8 g8",
-    "moves": "d2d4 g8e7 f2f4 a7a6 a2a4 e8f8 h2h3 c7c5 e1f1 b7b6 b2c3 f8g8 c1d2 e7f5 f1g1 d8h4 d1e1 c8b7 a8e8 b7g2 e1e5 e5c7 a1e1"
+    "moves": "d2d4 g8e7 f2f4 a7a6 a2a4 e8f8 h2h3 c7c5 e1f1 b7b6 b2c3 f8g8 c1d2 e7f5 f1g1 d8h4 d1e1 c8b7 e1e5 b7g2 e5c7 a8e8 a1e1"
   },
   "016": {
     "keep": "a1 e1 f1 h1 a2 b2 f2 g2 h2 f7 g7 h7 e8 f8 h8",
-    "moves": "f1e2 g7g6 e1f1 f8b4 e2f3 e8f8 f1g1 f8g7 a2a4 h8e8 a1d1 a4b5 d1d7 g1f1 f1e2 h1d1 e2f1 d1d2 f1g1"
+    "moves": "f1e2 g7g6 e1f1 f8b4 e2f3 e8f8 f1g1 f8g7 a2a4 h8e8 a1d1 a4b5 d1d7 g1f1 f1e2 h1d1 d1d2 e2f1 f1g1"
   },
   "017": {
     "keep": "a1 e1 e2 f2 g2 h2 a7 d7 e7 f7 h7 a8 c8 e8",
@@ -78,11 +78,11 @@ window.puzzleSetups = {
   },
   "020": {
     "keep": "d1 e1 h1 a2 b2 g2 b7 e7 g7 c8 d8 e8",
-    "moves": "a2a4 e7e5 h1f1 d8d7 b2b3 d7h3 d1d4 e8f8 e1f2 f8g8 f2g1 b7b5 c8g4 g8h8 g4f3 b5b4"
+    "moves": "a2a4 e7e5 h1f1 d8d7 b2b3 d7h3 d1d4 b7b5 e1f2 c8g4 f2g1 g4f3 b5b4 e8f8 f8g8 g8h8"
   },
   "021": {
     "keep": "d1 e1 f1 h1 g2 b7 d7 g7 h7 a8 c8 d8 e8 h8",
-    "moves": "f1d3 d7d5 h1f1 h8f8 g2g4 b7b5 d3b1 g7g5 d1d3 e8f7 d3g6 h7h6 e1f2 a8a6 f2g2 c8d7 g2h1 f7g7 a6f6 g7h8 d7c6 d8d6 d6b4"
+    "moves": "f1d3 d7d5 h1f1 h8f8 g2g4 b7b5 d3b1 g7g5 d1d3 h7h6 d3g6 a8a6 e1f2 c8d7 f2g2 a6f6 g2h1 d7c6 d8d6 d6b4 e8f7 f7g7 g7h8"
   },
   "022": {
     "keep": "a1 e1 h1 b2 c2 g2 h2 a7 b7 c7 h7 a8 e8 h8",
@@ -90,7 +90,7 @@ window.puzzleSetups = {
   },
   "023": {
     "keep": "c1 e1 h1 a2 c2 d2 g2 h2 a7 c7 e7 g7 h7 d8 e8",
-    "moves": "g2g3 c7c5 a2a4 a7a6 h1f1 e8f8 e1f2 e7e5 f2g1 f8g8 d2d4 e5e4 d4d5 e4e3 d8h4 e3e2 c1f4 f4d6 h4c4"
+    "moves": "g2g3 c7c5 a2a4 a7a6 h1f1 e8f8 e1f2 e7e5 f2g1 f8g8 d2d4 e5e4 d4d5 d8h4 c1f4 e4e3 f4d6 e3e2 h4c4"
   },
   "024": {
     "keep": "a1 b1 e1 a2 b2 e2 f2 h2 c7 d7 f7 h7 c8 e8 h8",
@@ -102,7 +102,7 @@ window.puzzleSetups = {
   },
   "026": {
     "keep": "a1 c1 d1 e1 h1 a2 c2 f2 g2 h2 a7 f7 g7 h7 c8 d8 e8 g8 h8",
-    "moves": "c2c3 g8e7 e1e2 e7d5 d1c2 c8e6 h1d1 e8f8 e2e1 g7g6 a1b1 h7h5 b1b4 f8g8 b4e4 d8a8 e1f1 f1g1 e4e1 e1f1 c1f4 f4e5 d5f4"
+    "moves": "c2c3 g8e7 e1e2 e7d5 d1c2 c8e6 h1d1 e8f8 e2e1 g7g6 a1b1 h7h5 e1f1 f8g8 c1f4 d8a8 f4e5 d5f4 f1g1 b1b4 b4e4 e4e1 e1f1"
   },
   "027": {
     "keep": "a1 d1 e1 f1 a2 f2 g2 h2 a7 e7 f7 a8 b8 d8 e8 f8",
@@ -114,7 +114,7 @@ window.puzzleSetups = {
   },
   "029": {
     "keep": "a1 b1 c1 e1 g1 a2 b2 f2 g2 h2 a7 b7 e7 f7 g7 h7 b8 e8 f8 g8 h8",
-    "moves": "c1d2 e8d8 d2a5 d8c8 h2h4 e7e5 g2g4 g8e7 g4g5 b8d7 b1c3 d7b6 a1d1 b6c4 c3e4 e7d5 e1d2 d5f4 g1e2 d2c1 e2c3 c3b5"
+    "moves": "c1d2 e8d8 d2a5 d8c8 h2h4 e7e5 g2g4 g8e7 g4g5 b8d7 b1c3 d7b6 a1d1 b6c4 c3e4 e7d5 e1d2 d5f4 d2c1 g1e2 e2c3 c3b5"
   },
   "030": {
     "keep": "c1 d1 e1 f1 d2 f2 h2 a7 b7 e7 g7 h7 b8 d8 e8",
@@ -150,11 +150,11 @@ window.puzzleSetups = {
   },
   "038": {
     "keep": "a1 e1 h1 c2 e2 g2 h2 a7 g7 a8 e8 h8",
-    "moves": "e1f1 a7a6 c2c3 e8f8 h2h3 g7g6 g2g3 f8g8 e2e4 a8b8 e4e5 b8b2 e5e6 h8h7 e6e7 h7f7 h1h2 h2e2 f7f2 e2e1 f2h2"
+    "moves": "e1f1 a7a6 c2c3 e8f8 h2h3 g7g6 g2g3 f8g8 e2e4 a8b8 e4e5 b8b2 e5e6 h8h7 h1h2 h7f7 h2e2 f7f2 e6e7 f2h2 e2e1"
   },
   "039": {
     "keep": "a1 e1 f1 h1 a2 b2 c2 d2 h2 a7 b7 c7 d7 h7 a8 b8 e8 h8",
-    "moves": "b2b3 d7d6 f1g2 a7a5 g2e4 b8c6 d2d4 c6e5 d4d5 b7b5 e1d1 b5b4 h1g1 h8f8 g1g7 e8f7 d1c1 f7g8 c1b2 g8h8 a1g1 f8f2 f2e2 a8f8"
+    "moves": "b2b3 d7d6 f1g2 a7a5 g2e4 b8c6 d2d4 c6e5 d4d5 b7b5 e1d1 b5b4 h1g1 h8f8 g1g7 f8f2 d1c1 e8f7 c1b2 f2e2 a1g1 a8f8 f7g8 g8h8"
   },
   "040": {
     "keep": "a1 b1 d1 e1 h1 a2 c2 d2 f2 g2 a7 b7 e7 h7 d8 e8 f8 h8",
@@ -162,11 +162,11 @@ window.puzzleSetups = {
   },
   "041": {
     "keep": "a1 d1 e1 b2 d2 f2 g2 h2 b7 c7 d7 e7 f7 h7 a8 b8 d8 e8 f8 g8 h8",
-    "moves": "f2f3 e7e5 e1f1 e5e4 f1g1 f7f5 d2d4 f5f4 d4d5 e4e3 f3e4 e8e7 d1a4 e7d6 a1e1 f4f3 g8f6 f6h5 b7b6 d6c5 d8g5 h7h6 d7d6 b8d7 a8d8"
+    "moves": "f2f3 e7e5 e1f1 e5e4 f1g1 f7f5 d2d4 f5f4 d4d5 e4e3 f3e4 e8e7 d1a4 e7d6 a1e1 f4f3 b7b6 d6c5 d8g5 h7h6 d7d6 b8d7 a8d8 g8f6 f6h5"
   },
   "042": {
     "keep": "e1 g1 h1 a2 h7 a8 b8 e8",
-    "moves": "a2a4 e8e7 a4a5 h7h5 e1d1 b8a6 g1f3 e7e6 f3e1 e6e5 h1h3 e5e4 h3c3 e4e3 a6b4 b4d3 a8b8 b8b2 b2a2"
+    "moves": "a2a4 h7h5 a4a5 b8a6 e1d1 a8b8 g1f3 b8b2 f3e1 a6b4 h1h3 b2a2 h3c3 b4d3 e8e7 e7e6 e6e5 e5e4 e4e3"
   },
   "043": {
     "keep": "b1 d1 e1 g1 h1 a2 b2 d2 f2 g2 h2 a7 e7 f7 a8 b8 c8 d8 e8 f8 h8",
@@ -186,7 +186,7 @@ window.puzzleSetups = {
   },
   "047": {
     "keep": "a1 d1 e1 h1 a2 d2 f2 g2 h2 a7 c7 g7 h7 a8 c8 d8 e8 h8",
-    "moves": "d2d4 e8f7 h2h3 g7g6 d1g4 f7g8 f2f3 c7c5 a2a3 c8a6 g4h4 g8f7 d4d5 d5d6 e1f2 h1c1 f2g1 a1b1 b1b7 b7e7 d8d7 d7b5 b5d3 h8d8 f7g8 d8d7 a8f8 d7d8"
+    "moves": "d2d4 e8f7 h2h3 g7g6 d1g4 f7g8 f2f3 c7c5 a2a3 c8a6 g4h4 g8f7 d4d5 d8d7 e1f2 d7b5 h1c1 b5d3 a1b1 h8d8 b1b7 f7g8 b7e7 d8d7 f2g1 a8f8 d5d6 d7d8"
   },
   "048": {
     "keep": "a1 c1 e1 a2 b2 f2 g2 h2 d7 f7 g7 h7 e8 f8 h8",
@@ -206,11 +206,11 @@ window.puzzleSetups = {
   },
   "052": {
     "keep": "a1 e1 h1 a2 b2 e2 f2 g2 h2 a7 b7 f7 h7 a8 c8 e8",
-    "moves": "a1d1 e8e7 d1d4 c8d7 d4a4 a8e8 e1d2 e7d8 h1c1 b7b6 d2e1 a7a6 f2f3 d8c7 e2e4 d7b5 e4e5 f7f5 e1f1 c7b7 c1c3 f5f4 e5f6 h7h5 a4d4 f1g1 a2a3"
+    "moves": "a1d1 e8e7 d1d4 c8d7 d4a4 a8e8 e1d2 e7d8 h1c1 b7b6 d2e1 a7a6 f2f3 d8c7 e2e4 d7b5 e4e5 f7f5 c1c3 c7b7 e5f6 f5f4 a4d4 h7h5 a2a3 e1f1 f1g1"
   },
   "053": {
     "keep": "d1 e1 g1 a2 c2 e2 a7 b7 c7 e7 a8 d8 e8 f8",
-    "moves": "c2c3 b7b6 e1d2 f8h6 d2c1 e8f8 d1f1 c7c5 f1f6 c5b4 g1f3 e7e5 f3h4 e5e4 e4e3 d8e8 e8f7 a8e8"
+    "moves": "c2c3 b7b6 e1d2 f8h6 d2c1 e8f8 d1f1 c7c5 f1f6 c5b4 g1f3 d8e8 f3h4 e8f7 a8e8 e7e5 e5e4 e4e3"
   },
   "054": {
     "keep": "a1 d1 e1 f1 h1 b2 c2 g2 h2 a7 b7 e7 f7 g7 h7 a8 e8 f8 h8",
@@ -218,11 +218,11 @@ window.puzzleSetups = {
   },
   "055": {
     "keep": "a1 c1 e1 c2 f2 g2 h2 c7 d7 g7 h7 a8 b8 d8 e8",
-    "moves": "e1f1 c7c5 a1a4 d7d5 f1g1 d8c7 c1d2 d5d4 h2h3 b8c6 c6a5 e8f8 a5c4 f8g8 g8h8"
+    "moves": "e1f1 c7c5 a1a4 d7d5 f1g1 d8c7 c1d2 d5d4 h2h3 b8c6 c6a5 a5c4 e8f8 f8g8 g8h8"
   },
   "056": {
     "keep": "b1 d1 e1 h1 b2 c2 e2 f2 g2 h2 a7 b7 e7 g7 h7 a8 d8 e8",
-    "moves": "e1d2 b7b5 d2c3 b5b4 c3b3 h7h5 b1c3 e8f7 c3d5 e7e6 b3a2 a7a5 d5f6 a8b8 h2h4 g7g6 d1d6 h1h3 d6c6 d8d1 g2g4 e2e4 g4g5 c2c3"
+    "moves": "e1d2 b7b5 d2c3 b5b4 c3b3 h7h5 b1c3 e8f7 c3d5 e7e6 b3a2 a7a5 d5f6 a8b8 h2h4 g7g6 d1d6 h1h3 d6c6 d8d1 e2e4 c2c3 g2g4 g4g5"
   },
   "057": {
     "keep": "a1 b1 d1 e1 h1 b2 c2 f2 g2 h2 a7 b7 g7 h7 a8 b8 c8 d8 e8 h8",
@@ -230,7 +230,7 @@ window.puzzleSetups = {
   },
   "058": {
     "keep": "a1 d1 e1 h1 a2 b2 c2 f2 h2 a7 b7 g7 h7 a8 d8 e8 h8",
-    "moves": "h2h4 e8f8 h4h5 b7b6 c2c3 g7g6 h5h6 d8c8 d1d5 c8f5 d5g2 a8d8 a1d1 d8d5 e1d2 h8g8 d2c2 g8g7 h1e1 g7d7 d1d4 c2b1 d4e4 b1a1"
+    "moves": "h2h4 e8f8 h4h5 b7b6 c2c3 g7g6 h5h6 d8c8 d1d5 c8f5 d5g2 a8d8 a1d1 d8d5 d1d4 h8g8 e1d2 g8g7 h1e1 g7d7 d4e4 d2c2 c2b1 b1a1"
   },
   "059": {
     "keep": "a1 e1 f1 a2 e2 f2 g2 h2 a7 b7 f7 g7 h7 a8 d8 e8 f8",
@@ -238,15 +238,15 @@ window.puzzleSetups = {
   },
   "060": {
     "keep": "a1 c1 d1 e1 h1 a2 c2 e2 f2 g2 h2 c7 g7 h7 c8 d8 e8 h8",
-    "moves": "e2e4 h8f8 e4e5 f8f5 c1f4 f5h5 h2h4 e8f8 h1h3 f8g8 h3e3 d8d5 d1f3 h7h6 f3h3 g8h7 h3h2 d5f3 a1b1 c8e6 b1b8 c7c6 e1f1 e6d5 f1g1 c2c3 g2g3"
+    "moves": "e2e4 h8f8 e4e5 f8f5 c1f4 f5h5 h2h4 e8f8 h1h3 f8g8 h3e3 d8d5 d1f3 h7h6 f3h3 g8h7 h3h2 d5f3 a1b1 c8e6 b1b8 c7c6 c2c3 e6d5 g2g3 e1f1 f1g1"
   },
   "061": {
     "keep": "c1 e1 g1 h1 a2 b2 c2 g2 h2 a7 b7 c7 g7 h7 a8 e8 g8 h8",
-    "moves": "a2a3 h7h5 h2h3 a8d8 b2b4 d8d1 c1b2 g8e7 b4b5 e7d5 b2a1 d5e3 e1d2 e8d8 d2e1 d8c8 c8b8 h8f8 f8f2 g1f3 f2e2 h1f1 e1f2 f2g1 f3e1"
+    "moves": "a2a3 h7h5 h2h3 a8d8 b2b4 d8d1 c1b2 g8e7 b4b5 e7d5 b2a1 d5e3 e1d2 h8f8 d2e1 f8f2 g1f3 e8d8 h1f1 f2e2 e1f2 d8c8 f2g1 c8b8 f3e1"
   },
   "062": {
     "keep": "a1 e1 h1 a2 b2 g2 h2 a7 b7 g7 h7 e8 f8 h8",
-    "moves": "a1c1 e8d7 c1c8 f8c5 c8b8 d7d6 h1f1 g7g5 f1f8 g5g4 f8e8 h7h6 b2b4 h8f8 e1f1 b7b6 f1g1 f8f2 g1h1 b4b5 a2a4 g2g3"
+    "moves": "a1c1 e8d7 c1c8 f8c5 c8b8 d7d6 h1f1 g7g5 f1f8 g5g4 f8e8 h7h6 b2b4 h8f8 b4b5 b7b6 a2a4 f8f2 g2g3 e1f1 f1g1 g1h1"
   },
   "063": {
     "keep": "a1 d1 e1 a2 f2 g2 h2 a7 c7 f7 g7 h7 a8 d8 e8",
@@ -270,11 +270,11 @@ window.puzzleSetups = {
   },
   "068": {
     "keep": "e1 b2 d2 h2 e7 f7 h7 e8",
-    "moves": "d2d4 e7e5 b2b4 h7h5 h2h3 e5e4 b4b5 e8e7 b5b6 e7e6 b6b7 e6d5 d5c4 c4d3 f7f5 e4e3 e3e2 f5f4 f4f3"
+    "moves": "d2d4 e7e5 b2b4 h7h5 h2h3 e5e4 b4b5 f7f5 b5b6 e4e3 b6b7 e3e2 f5f4 f4f3 e8e7 e7e6 e6d5 d5c4 c4d3"
   },
   "069": {
     "keep": "c1 e1 g1 a2 b2 d2 f2 g2 h2 a7 b7 e7 f7 g7 h7 e8 f8 g8",
-    "moves": "e1e2 e7e6 a2a3 a7a6 d2d4 h7h6 g1f3 f8c5 c1e3 c5b6 h2h3 f7f6 e8f7 f7g6 g8e7 e7d5 g6f5"
+    "moves": "e1e2 e7e6 a2a3 a7a6 d2d4 h7h6 g1f3 f8c5 c1e3 c5b6 h2h3 f7f6 g8e7 e7d5 e8f7 f7g6 g6f5"
   },
   "070": {
     "keep": "a1 b1 d1 e1 h1 a2 b2 c2 d2 e2 g2 h2 c7 f7 g7 h7 a8 c8 d8 e8 h8",
@@ -322,11 +322,11 @@ window.puzzleSetups = {
   },
   "081": {
     "keep": "b1 e1 h1 e2 f2 h2 g7 h7 a8 c8 e8 f8",
-    "moves": "h2h4 g7g6 e2e3 a8a2 b1c3 e8f7 c3e4 f7g8 f2f4 c8a6 e1f2 a6d3 h1c1 f2g3 c1c7"
+    "moves": "h2h4 g7g6 e2e3 a8a2 b1c3 e8f7 c3e4 f7g8 f2f4 c8a6 e1f2 a6d3 f2g3 h1c1 c1c7"
   },
   "082": {
     "keep": "a1 e1 g1 h1 a2 g2 h2 a7 h7 a8 e8 g8 h8",
-    "moves": "g2g3 g8e7 h2h3 h8f8 a1c1 e8f7 h1h2 f7g8 c1c7 a8e8 h2e2 f8f5 g1f3 f3d4 e1f2 d4e6 f2f3 f3g4"
+    "moves": "g2g3 g8e7 h2h3 h8f8 a1c1 e8f7 h1h2 f7g8 c1c7 a8e8 h2e2 f8f5 g1f3 f3d4 d4e6 e1f2 f2f3 f3g4"
   },
   "083": {
     "keep": "e1 g1 h1 a2 b2 c2 d2 g2 h2 a7 b7 d7 e7 g7 h7 a8 c8 d8 e8",
@@ -338,7 +338,7 @@ window.puzzleSetups = {
   },
   "085": {
     "keep": "d1 e1 h1 a2 b2 c2 d2 f2 g2 h2 a7 b7 c7 e7 f7 g7 h7 d8 e8 f8 h8",
-    "moves": "h1g1 b7b6 c2c4 c7c5 h2h3 g7g6 d2c3 h7h6 g2f3 d8b8 e1f1 f7f5 f1g2 e7e6 g2h1 e8f7 d1d6 f5e4 d6g3 f7g7 f8e7 e7f6 h8f8"
+    "moves": "h1g1 b7b6 c2c4 c7c5 h2h3 g7g6 d2c3 h7h6 g2f3 d8b8 e1f1 f7f5 f1g2 e7e6 g2h1 f5e4 d1d6 f8e7 d6g3 e7f6 h8f8 e8f7 f7g7"
   },
   "086": {
     "keep": "a1 c1 d1 e1 h1 a2 c2 d2 g2 h2 a7 b7 e7 g7 h7 a8 d8 e8 g8 h8",
@@ -362,7 +362,7 @@ window.puzzleSetups = {
   },
   "091": {
     "keep": "a1 c1 e1 h1 a2 g2 h2 a7 b7 e7 h7 a8 b8 e8 h8",
-    "moves": "c1e3 e7e5 a2a4 a7a6 a1c1 e5e4 c1c7 b8c6 h1f1 a8d8 f1f6 c6a5 e1f1 d8d3 f1g1 e8d8 d8c8 c8b8 b8a8 h8b8"
+    "moves": "c1e3 a7a6 a2a4 b8c6 a1c1 c6a5 c1c7 a8d8 h1f1 d8d3 f1f6 e8d8 e1f1 d8c8 f1g1 c8b8 b8a8 h8b8 e7e5 e5e4"
   },
   "092": {
     "keep": "a1 c1 d1 e1 f1 h1 a2 b2 e2 f2 a7 b7 c7 g7 a8 b8 d8 e8 f8",
