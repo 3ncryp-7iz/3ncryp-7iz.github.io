@@ -2,7 +2,7 @@ window.catalog = [
   [
     "Oxblood Puzzle Tee",
     "Oxblood",
-    32,
+    30,
     "queen",
     "A chess puzzle printed across the chest of an oxblood tee.",
     "001",
@@ -11,7 +11,7 @@ window.catalog = [
   [
     "Indigo Puzzle Tee",
     "Indigo",
-    34,
+    30,
     "pawn",
     "A chess puzzle printed across the chest of an indigo tee.",
     "052",
@@ -20,7 +20,7 @@ window.catalog = [
   [
     "Washed Black Puzzle Tee",
     "Washed black",
-    32,
+    30,
     "knight",
     "A chess puzzle printed across the chest of a washed black tee.",
     "002",
@@ -38,7 +38,7 @@ window.catalog = [
   [
     "Forest Puzzle Tee",
     "Forest",
-    32,
+    30,
     "forest",
     "A chess puzzle printed across the chest of a forest tee.",
     "023",
@@ -47,7 +47,7 @@ window.catalog = [
   [
     "Terracotta Puzzle Tee",
     "Terracotta",
-    32,
+    30,
     "clay",
     "A chess puzzle printed across the chest of a terracotta tee.",
     "038",
@@ -56,7 +56,7 @@ window.catalog = [
   [
     "Oatmeal Puzzle Tee",
     "Oatmeal",
-    32,
+    30,
     "oatmeal",
     "A chess puzzle printed across the chest of a oatmeal tee.",
     "073",
@@ -65,7 +65,7 @@ window.catalog = [
   [
     "Coffee Puzzle Tee",
     "Coffee",
-    32,
+    30,
     "coffee",
     "A chess puzzle printed across the chest of a coffee tee.",
     "086",
@@ -74,7 +74,7 @@ window.catalog = [
   [
     "Washed Black Puzzle Hoodie",
     "Washed black",
-    54,
+    30,
     "hoodie-black",
     "A pullover hoodie with a centred puzzle print above the front pocket.",
     "026",
@@ -84,7 +84,7 @@ window.catalog = [
   [
     "Oxblood Puzzle Hoodie",
     "Oxblood",
-    54,
+    30,
     "hoodie-oxblood",
     "A pullover hoodie with a centred puzzle print above the front pocket.",
     "082",
@@ -94,7 +94,7 @@ window.catalog = [
   [
     "Forest Puzzle Hoodie",
     "Forest",
-    54,
+    30,
     "hoodie-forest",
     "A pullover hoodie with a centred puzzle print above the front pocket.",
     "051",
@@ -104,7 +104,7 @@ window.catalog = [
   [
     "Oatmeal Puzzle Hoodie",
     "Oatmeal",
-    54,
+    30,
     "hoodie-oatmeal",
     "A pullover hoodie with a centred puzzle print above the front pocket.",
     "013",
@@ -114,7 +114,7 @@ window.catalog = [
   [
     "Dusty Rose Puzzle Tee",
     "Dusty Rose",
-    32,
+    30,
     "dusty-rose",
     "A cotton tee with a centred chess puzzle ledger.",
     "004",
@@ -123,7 +123,7 @@ window.catalog = [
   [
     "Slate Blue Puzzle Tee",
     "Slate Blue",
-    32,
+    30,
     "slate-blue",
     "A cotton tee with a centred chess puzzle ledger.",
     "017",
@@ -132,7 +132,7 @@ window.catalog = [
   [
     "Sand Puzzle Tee",
     "Sand",
-    32,
+    30,
     "sand",
     "A cotton tee with a centred chess puzzle ledger.",
     "029",
@@ -141,7 +141,7 @@ window.catalog = [
   [
     "Petrol Teal Puzzle Tee",
     "Petrol Teal",
-    32,
+    30,
     "petrol-teal",
     "A cotton tee with a centred chess puzzle ledger.",
     "047",
@@ -150,7 +150,7 @@ window.catalog = [
   [
     "Mustard Puzzle Tee",
     "Mustard",
-    32,
+    30,
     "mustard",
     "A cotton tee with a centred chess puzzle ledger.",
     "053",
@@ -159,7 +159,7 @@ window.catalog = [
   [
     "Lilac Puzzle Tee",
     "Lilac",
-    32,
+    30,
     "lilac",
     "A cotton tee with a centred chess puzzle ledger.",
     "062",
@@ -168,7 +168,7 @@ window.catalog = [
   [
     "Brick Red Puzzle Tee",
     "Brick Red",
-    32,
+    30,
     "brick-red",
     "A cotton tee with a centred chess puzzle ledger.",
     "069",
@@ -177,7 +177,7 @@ window.catalog = [
   [
     "Denim Blue Puzzle Tee",
     "Denim Blue",
-    32,
+    30,
     "denim-blue",
     "A cotton tee with a centred chess puzzle ledger.",
     "078",
@@ -186,7 +186,7 @@ window.catalog = [
   [
     "Sage Puzzle Tee",
     "Sage",
-    32,
+    30,
     "sage",
     "A cotton tee with a centred chess puzzle ledger.",
     "092",
@@ -195,7 +195,7 @@ window.catalog = [
   [
     "Aubergine Puzzle Tee",
     "Aubergine",
-    32,
+    30,
     "aubergine",
     "A cotton tee with a centred chess puzzle ledger.",
     "099",

@@ -7,6 +7,7 @@ const status = document.querySelector('#status');
 const bagKey = 'chess-bag:postal-phase-2-puzzle-prints';
 const money = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' });
 const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const previewSold = new Set(window.location?.search ? new URLSearchParams(window.location.search).getAll('sold') : []);
 const getProduct = id => products.find(product => product[3] === id);
 const garmentOf = product => product[7] ?? 'tee';
 const dyedTees = new Set(Object.keys(window.shirtFabrics).filter(id => id !== 'queen'));
@@ -40,6 +41,13 @@ function installGarmentFilters() {
     for (const [name, value] of Object.entries(attributes)) node.setAttribute(name, value);
     return node;
   }
+
+  const soldMatte = element('filter', { id: 'sold-matte', ...bounds });
+  soldMatte.append(
+    element('feFlood', { 'flood-color': '#151515', style: 'flood-color: var(--page)' }),
+    element('feComposite', { in2: 'SourceAlpha', operator: 'in' })
+  );
+  defs.append(soldMatte);
 
   for (const [id, colour] of Object.entries(window.teeInks)) {
     const filterId = 'print-ink-' + id;
@@ -156,7 +164,7 @@ function darkGarmentBoard(position, id, x, y, size) {
   </svg>`;
 }
 
-function teePreview(product, print, design = product[6] ?? 'classic', look, includeBoard = true, cutout = false) {
+function teePreview(product, print, design = product[6] ?? 'classic', look, includeBoard = true, cutout = false, sold = false) {
   const [, colour, , id] = product;
   const name = window.productName(product, print);
   const { file, label, position } = puzzlePrints.get(print);
@@ -185,13 +193,16 @@ function teePreview(product, print, design = product[6] ?? 'classic', look, incl
   const diagram = !includeBoard ? ''
     : lightInkGarments.has(id) ? darkGarmentBoard(position, id, x, y, size)
       : `<image href="${storePath}assets/puzzles/${file}" x="${x}" y="${y}" width="${size}" height="${size}" filter="url(#print-ink-${id})" opacity=".9"/>`;
-  return `<svg class="tee-preview" role="img" aria-label="${appearance}${name}, ${colour}: ${label}, ${printDesigns.get(design)}" viewBox="0 0 512 512" width="512" height="512">
-    <image href="${storePath}assets/${photo.file}${cutout ? '?v=2' : ''}" width="512" height="512"${photo.filter ? ` filter="${photo.filter}"` : ''}/>
+  const image = `<image href="${storePath}assets/${photo.file}${cutout ? '?v=2' : ''}" width="512" height="512"`;
+  const art = `${image}${photo.filter ? ` filter="${photo.filter}"` : ''}/>
     <g transform="${transform}">
       ${diagram}
       ${ornament}
-    </g>
-  </svg>`;
+    </g>`;
+  const layers = sold && cutout
+    ? `${image} filter="url(#sold-matte)"/><g class="sold-art">${art}</g>`
+    : art;
+  return `<svg class="tee-preview" role="img" aria-label="${appearance}${name}, ${colour}: ${label}, ${printDesigns.get(design)}" viewBox="0 0 512 512" width="512" height="512">${layers}</svg>`;
 }
 
 try {
@@ -224,21 +235,23 @@ const featuredProduct = productGrid.getAttribute('data-featured-product');
 function puzzlePhoto(product, print, preview, className, design = product[6] ?? 'ledger') {
   const [, colour, , id] = product;
   const name = window.productName(product, print);
-  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="View ${name}, ${colour}">${preview}</a>`;
+  const sold = previewSold.has(print);
+  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}${sold ? '&amp;sold=' + print : ''}" aria-label="View ${name}, ${colour}${sold ? ', sold' : ''}">${preview}</a>`;
 }
 
 function productCard(product, print = product[5], featured = false) {
   const [, colour, price, id] = product;
   const title = window.productName(product, print);
+  const sold = previewSold.has(print);
   const showColour = garmentOf(product) !== 'tee' || !productGrid.hasAttribute('data-puzzle-catalogue');
   const detail = featured ? puzzlePrints.get(print).label : showColour ? colour : '';
   const cutout = productGrid.hasAttribute('data-checker-products');
-  const preview = teePreview(product, print, undefined, undefined, true, cutout);
+  const preview = teePreview(product, print, undefined, undefined, true, cutout, sold);
   const photo = puzzlePhoto(product, print, preview, 'product-photo');
   return `
-  <article class="product" data-item="${id}">
+  <article class="product" data-item="${id}"${sold ? ' data-sold' : ''}>
     ${photo}
-    <div class="product-info"><h3>${title}</h3><span>${money.format(price)}</span>${detail ? `<p>${detail}</p>` : ''}${featured && showColour ? `<p>${colour}</p>` : ''}</div>
+    <div class="product-info"><h3>${title}</h3><span>${sold ? 'Sold' : money.format(price)}</span>${detail ? `<p>${detail}</p>` : ''}${featured && showColour ? `<p>${colour}</p>` : ''}</div>
   </article>`;
 }
 
@@ -278,9 +291,15 @@ if (productGrid.hasAttribute('data-ledger-collection')) {
   const print = productGrid.getAttribute('data-featured-print') ?? base[5];
   const design = productGrid.getAttribute('data-featured-design') ?? base[6];
   const colourControls = document.querySelector('[data-shirt-colours]');
+  const sold = previewSold.has(print);
+  if (sold) productGrid.closest('[data-playable-print]')?.setAttribute('data-sold', '');
   function displayPurchase(product) {
     const [, colour, price, id] = product;
     const name = window.productName(product, print);
+    if (sold) {
+      productGrid.innerHTML = `<div class="purchase-summary"><h2>${name}</h2><p>Sold · ${colour}</p></div>`;
+      return;
+    }
     const size = productGrid.querySelector('input[name="size"]:checked')?.value;
     productGrid.innerHTML = `<form class="purchase-summary" data-inline-purchase data-product="${id}" data-print="${print}" data-design="${design}">
       <div><h2>${name}</h2><p>${money.format(price)} · ${colour}</p></div>

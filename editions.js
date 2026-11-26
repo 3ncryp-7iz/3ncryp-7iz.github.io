@@ -107,6 +107,25 @@
         updateCatalog();
       }
 
+      const soldPicker = document.querySelector('#preview-sold');
+      if (soldPicker) {
+        for (const print of puzzlePrints.keys()) soldPicker.add(new Option('No. ' + print, print));
+        soldPicker.value = [...previewSold].find(print => puzzlePrints.has(print)) ?? '';
+        soldPicker.addEventListener('change', () => {
+          previewSold.clear();
+          if (soldPicker.value) previewSold.add(soldPicker.value);
+          try {
+            const url = new URL(window.location.href);
+            if (soldPicker.value) url.searchParams.set('sold', soldPicker.value);
+            else url.searchParams.delete('sold');
+            window.history.replaceState(window.history.state, '', url);
+          } catch {
+            // The preview also works when local file history cannot be updated.
+          }
+          renderCatalogue();
+        });
+      }
+
       desktop.addEventListener('change', renderCatalogue);
       renderCatalogue();
     } else {
