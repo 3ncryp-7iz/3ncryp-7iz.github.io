@@ -210,3 +210,19 @@
   @keyframes sold-phase { from { opacity: 1; } }
   @keyframes sold-stamp { from { opacity: 0; } }
 }
+
+.streetwear .catalogue-pages:not([hidden]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(.5rem, 2vw, 1.25rem);
+  margin-top: 1.5rem;
+  font: .75rem var(--mono);
+}
+.streetwear .catalogue-pages button {
+  min-height: 44px;
+  padding-inline: .65rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.streetwear .catalogue-pages button:hover:not(:disabled) { border-color: var(--accent); }

@@ -59,85 +59,92 @@
     });
   }
 
-  const garment = document.querySelector('#filter-garment');
-  if (garment) {
-    const colour = document.querySelector('#filter-colour');
+  const grid = document.querySelector('[data-puzzle-catalogue]');
+  if (grid) {
+    const garment = document.querySelector('#filter-garment');
     const mate = document.querySelector('#filter-mate');
-    const grid = document.querySelector('#products');
+    const pageSize = document.querySelector('#catalog-page-size');
     const count = document.querySelector('#catalog-count');
-    const codedCatalogue = grid.hasAttribute('data-puzzle-catalogue');
+    const heading = document.querySelector('#catalogue-title');
+    const pager = document.querySelector('#catalog-pages');
+    const previous = document.querySelector('#catalog-previous');
+    const next = document.querySelector('#catalog-next');
+    const pageStatus = document.querySelector('#catalog-page-status');
     const hoodieLook = document.querySelector('[data-hoodie-look]');
-    let cards = [...grid.querySelectorAll('.product')];
-    if (colour) {
-      for (const label of new Set(products.map(product => product[1]))) colour.add(new Option(label, label));
-    }
+    const soldPicker = document.querySelector('#preview-sold');
+    const desktop = matchMedia('(width > 920px)');
+    const forest = getProduct('forest');
+    const washedBlack = getProduct('knight');
+    const tees = [...puzzlePrints.keys()].map(print => ({ print }));
+    const hoodies = ['hoodie-forest', 'hoodie-black'].map(id => {
+      const product = getProduct(id);
+      return { print: product[5], product };
+    });
+    let page = 0;
 
-    function updateCatalog() {
-      let available = 0;
-      let sold = 0;
-      for (const card of cards) {
-        const product = getProduct(card.dataset.item);
-        const label = puzzlePrints.get(card.dataset.print).label;
-        card.hidden = Boolean((colour?.value && colour.value !== product[1])
-          || (garment.value && garment.value !== garmentOf(product))
-          || (mate.value && !label.endsWith('mate in ' + mate.value)));
-        if (!card.hidden) {
-          if (card.hasAttribute('data-sold')) sold++;
-          else available++;
-        }
+    function renderCatalogue(revealPreview = false) {
+      const isHoodie = garment.value === 'hoodie';
+      const items = (isHoodie ? hoodies : tees).filter(({ print }) =>
+        !mate.value || puzzlePrints.get(print).label.endsWith('mate in ' + mate.value));
+      const limit = Number(pageSize.value);
+      const pageCount = Math.max(1, Math.ceil(items.length / limit));
+      if (revealPreview && soldPicker.value) {
+        const index = items.findIndex(({ print }) => print === soldPicker.value);
+        if (index >= 0) page = Math.floor(index / limit);
       }
-      if (sold) {
+      page = Math.min(page, pageCount - 1);
+      const start = page * limit;
+      const columns = desktop.matches ? 5 : 2;
+      grid.innerHTML = items.slice(start, start + limit).map(({ print, product }, index) => {
+        const darkSquare = (Math.floor(index / columns) + index % columns) % 2 === 1;
+        return productCard(product ?? (darkSquare ? washedBlack : forest), print);
+      }).join('');
+
+      const available = items.filter(({ print }) => !previewSold.has(print)).length;
+      if (available < items.length) {
         count.textContent = available === 1 ? '1 Item remains' : available + ' Items remain';
       } else {
         count.textContent = available === 1 ? '1 Item available' : available + ' Items available';
       }
-      if (hoodieLook) hoodieLook.hidden = garment.value !== 'hoodie';
+      if (hoodieLook) hoodieLook.hidden = !isHoodie;
+      pager.hidden = pageCount === 1;
+      previous.disabled = page === 0;
+      next.disabled = page === pageCount - 1;
+      pageStatus.textContent = 'Page ' + (page + 1) + ' of ' + pageCount;
     }
 
-    garment.addEventListener('change', updateCatalog);
-    colour?.addEventListener('change', updateCatalog);
-    mate.addEventListener('change', updateCatalog);
-    if (codedCatalogue) {
-      const desktop = matchMedia('(width > 920px)');
-      const forest = getProduct('forest');
-      const washedBlack = getProduct('knight');
-      const hoodies = ['hoodie-forest', 'hoodie-black'].map(getProduct);
-
-      function renderCatalogue() {
-        const columns = desktop.matches ? 5 : 2;
-        const tees = [...puzzlePrints.keys()].map((print, index) => {
-          const darkSquare = (Math.floor(index / columns) + index % columns) % 2 === 1;
-          return productCard(darkSquare ? washedBlack : forest, print);
-        });
-        grid.innerHTML = [...tees, ...hoodies.map(product => productCard(product))].join('');
-        cards = [...grid.querySelectorAll('.product')];
-        updateCatalog();
-      }
-
-      const soldPicker = document.querySelector('#preview-sold');
-      if (soldPicker) {
-        for (const print of puzzlePrints.keys()) soldPicker.add(new Option('No. ' + print, print));
-        soldPicker.value = [...previewSold].find(print => puzzlePrints.has(print)) ?? '';
-        soldPicker.addEventListener('change', () => {
-          previewSold.clear();
-          if (soldPicker.value) previewSold.add(soldPicker.value);
-          try {
-            const url = new URL(window.location.href);
-            if (soldPicker.value) url.searchParams.set('sold', soldPicker.value);
-            else url.searchParams.delete('sold');
-            window.history.replaceState(window.history.state, '', url);
-          } catch {
-            // The preview also works when local file history cannot be updated.
-          }
-          renderCatalogue();
-        });
-      }
-
-      desktop.addEventListener('change', renderCatalogue);
+    for (const control of [garment, mate, pageSize]) {
+      control.addEventListener('change', () => {
+        page = 0;
+        renderCatalogue();
+      });
+    }
+    function changePage(step) {
+      page += step;
       renderCatalogue();
-    } else {
-      updateCatalog();
+      heading.focus();
     }
+    previous.addEventListener('click', () => changePage(-1));
+    next.addEventListener('click', () => changePage(1));
+
+    for (const print of puzzlePrints.keys()) soldPicker.add(new Option('No. ' + print, print));
+    soldPicker.value = [...previewSold].find(print => puzzlePrints.has(print)) ?? '';
+    soldPicker.addEventListener('change', () => {
+      previewSold.clear();
+      if (soldPicker.value) previewSold.add(soldPicker.value);
+      try {
+        const url = new URL(window.location.href);
+        if (soldPicker.value) url.searchParams.set('sold', soldPicker.value);
+        else url.searchParams.delete('sold');
+        window.history.replaceState(window.history.state, '', url);
+      } catch {
+        // The preview also works when local file history cannot be updated.
+      }
+      renderCatalogue(true);
+    });
+
+    desktop.addEventListener('change', () => renderCatalogue());
+    renderCatalogue(true);
   }
 
   const proof = document.querySelector('#proof-select');
