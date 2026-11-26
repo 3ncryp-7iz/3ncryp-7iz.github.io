@@ -5,7 +5,7 @@
   const record = window.puzzlePrints.find(([number]) => number === requested) ?? window.puzzlePrints[0];
   const [number, label] = record;
   const product = window.catalog.find(item => item[3] === (params.get('product') ?? params.get('colour'))) ?? window.catalog[0];
-  const [name, , , id] = product;
+  const id = product[3];
   const [fen, moves] = window.puzzlePositions[number];
   const [side, mate] = label.split(' · ');
   const count = Number(mate.split(' ').at(-1));
@@ -23,7 +23,7 @@
   grid.dataset.featuredProduct = id;
   grid.dataset.featuredPrint = number;
   grid.dataset.featuredDesign = 'ledger';
-  document.title = 'Puzzle ' + number + ' · ' + name + ' — ChessCo - My enterprise mwhahaha';
+  document.title = window.productName(product, number) + ' — OffTheBoardClub';
   page.querySelector('[data-puzzle-number]').textContent = 'Puzzle № ' + number;
   page.querySelector('#puzzle-title').textContent = 'Mate in ' + summary + '.';
   page.querySelector('[data-side-to-move]').textContent = side + '.';

@@ -99,10 +99,13 @@ for (const element of document.querySelectorAll?.('[data-puzzle-count]') ?? []) 
   element.textContent = String(puzzlePrints.size);
 }
 
-function garmentPhoto(id) {
-  return dyedTees.has(id)
-    ? { file: 'queen-blank.webp', filter: 'url(#shirt-dye-' + id + ')' }
-    : { file: id + '-blank.webp', filter: '' };
+function garmentPhoto(id, cutout) {
+  const dyed = dyedTees.has(id);
+  const photo = dyed ? 'queen' : id;
+  let file = photo + '-blank.webp';
+  if (cutout) file = 'checker-product-' + photo + '.webp';
+  else if (document.body?.classList.contains('streetwear')) file = 'streetwear-product-' + photo + '.webp';
+  return { file, filter: dyed ? 'url(#shirt-dye-' + id + ')' : '' };
 }
 
 function designOptions(selected) {
@@ -153,8 +156,9 @@ function darkGarmentBoard(position, id, x, y, size) {
   </svg>`;
 }
 
-function teePreview(product, print, design = product[6] ?? 'classic', look, includeBoard = true) {
-  const [name, , , id] = product;
+function teePreview(product, print, design = product[6] ?? 'classic', look, includeBoard = true, cutout = false) {
+  const [, colour, , id] = product;
+  const name = window.productName(product, print);
   const { file, label, position } = puzzlePrints.get(print);
   const ink = window.teeInks[id];
   const { x, y, size } = printBoxes[design];
@@ -164,7 +168,7 @@ function teePreview(product, print, design = product[6] ?? 'classic', look, incl
     ornament = `<g fill="${ink}" opacity=".87">
       <rect x="146" y="125" width="220" height="220" rx="5" fill="none" stroke="${ink}" stroke-width="2.4" stroke-dasharray="2 5" stroke-linecap="round"/>
       <rect x="155" y="134" width="202" height="202" rx="2" fill="none" stroke="${ink}" stroke-width="1"/>
-      <text x="256" y="361" text-anchor="middle" font-family="Georgia, serif" font-size="11" letter-spacing=".5">ChessCo - My enterprise mwhahaha</text>
+      <text x="256" y="361" text-anchor="middle" font-family="Georgia, serif" font-size="11" letter-spacing=".5">OffTheBoardClub</text>
     </g>`;
   }
   if (design === 'ledger') {
@@ -176,13 +180,13 @@ function teePreview(product, print, design = product[6] ?? 'classic', look, incl
     </g>`;
   }
   const transform = fitted ? `translate(${fitted.x} ${fitted.y}) scale(${fitted.scale}) translate(-256 -240)` : '';
-  const photo = look ? { file: look.file, filter: '' } : garmentPhoto(id);
+  const photo = look ? { file: look.file, filter: '' } : garmentPhoto(id, cutout);
   const appearance = look ? 'Digital on-model mockup of ' : '';
   const diagram = !includeBoard ? ''
     : lightInkGarments.has(id) ? darkGarmentBoard(position, id, x, y, size)
       : `<image href="${storePath}assets/puzzles/${file}" x="${x}" y="${y}" width="${size}" height="${size}" filter="url(#print-ink-${id})" opacity=".9"/>`;
-  return `<svg class="tee-preview" role="img" aria-label="${appearance}${name} with puzzle ${print}: ${label}, ${printDesigns.get(design)}" viewBox="0 0 512 512" width="512" height="512">
-    <image href="${storePath}assets/${photo.file}" width="512" height="512"${photo.filter ? ` filter="${photo.filter}"` : ''}/>
+  return `<svg class="tee-preview" role="img" aria-label="${appearance}${name}, ${colour}: ${label}, ${printDesigns.get(design)}" viewBox="0 0 512 512" width="512" height="512">
+    <image href="${storePath}assets/${photo.file}${cutout ? '?v=2' : ''}" width="512" height="512"${photo.filter ? ` filter="${photo.filter}"` : ''}/>
     <g transform="${transform}">
       ${diagram}
       ${ornament}
@@ -218,15 +222,17 @@ const lookbook = document.querySelector('.lookbook');
 const featuredProduct = productGrid.getAttribute('data-featured-product');
 
 function puzzlePhoto(product, print, preview, className, design = product[6] ?? 'ledger') {
-  const [name, , , id] = product;
-  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="View ${name}, puzzle ${print}">${preview}</a>`;
+  const [, colour, , id] = product;
+  const name = window.productName(product, print);
+  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="View ${name}, ${colour}">${preview}</a>`;
 }
 
 function productCard(product, print = product[5], featured = false) {
-  const [name, colour, price, id] = product;
-  const title = featured ? 'Puzzle № ' + print : name;
+  const [, colour, price, id] = product;
+  const title = window.productName(product, print);
   const detail = featured ? puzzlePrints.get(print).label : colour;
-  const preview = teePreview(product, print);
+  const cutout = productGrid.hasAttribute('data-checker-products');
+  const preview = teePreview(product, print, undefined, undefined, true, cutout);
   const photo = puzzlePhoto(product, print, preview, 'product-photo');
   return `
   <article class="product" data-item="${id}">
@@ -272,10 +278,11 @@ if (productGrid.hasAttribute('data-ledger-collection')) {
   const design = productGrid.getAttribute('data-featured-design') ?? base[6];
   const colourControls = document.querySelector('[data-shirt-colours]');
   function displayPurchase(product) {
-    const [name, , price, id] = product;
+    const [, colour, price, id] = product;
+    const name = window.productName(product, print);
     const size = productGrid.querySelector('input[name="size"]:checked')?.value;
     productGrid.innerHTML = `<form class="purchase-summary" data-inline-purchase data-product="${id}" data-print="${print}" data-design="${design}">
-      <div><h2>${name}</h2><p>${money.format(price)}</p></div>
+      <div><h2>${name}</h2><p>${money.format(price)} · ${colour}</p></div>
       <div class="purchase-options">
         ${sizeFields(size)}
         <button class="button" type="submit">Add to cart <span aria-hidden="true">+</span></button>
@@ -305,9 +312,10 @@ if (productGrid.hasAttribute('data-ledger-collection')) {
         <span class="sr-only">${colour}</span>
       </label>`).join('');
 
+    const cutout = document.body?.classList.contains('streetwear');
     function displayColour(id) {
       const product = getProduct(id);
-      artwork.innerHTML = teePreview(product, print, design, null, false);
+      artwork.innerHTML = teePreview(product, print, design, null, false, cutout);
       surface.style.setProperty('--shirt-ink', window.teeInks[id]);
       surface.style.setProperty('--shirt-fabric', fabricOf(id));
       surface.style.setProperty('--piece-ink', 'url(#piece-ink-' + id + ')');
@@ -337,11 +345,12 @@ if (lookbook) {
   for (const figure of lookbook.querySelectorAll('[data-worn-look]')) {
     const look = window.garmentLooks[figure.dataset.wornLook];
     const product = getProduct(look.product);
-    const [name, , , , , print] = product;
+    const [, colour, , , , print] = product;
+    const name = window.productName(product, print);
     const preview = teePreview(product, print, 'ledger', look);
     figure.innerHTML = `${puzzlePhoto(product, print, preview, 'lookbook-photo', 'ledger')}
       <figcaption>
-        <span>${name} · #${print}</span>
+        <span>${name} · ${colour}</span>
       </figcaption>`;
   }
 }
@@ -365,7 +374,7 @@ function addToBag(id, print, design, size, feedback, afterAdd) {
   saveBag();
   afterAdd?.();
   showBag();
-  status.textContent = `${getProduct(id)[0]}, puzzle ${print}, ${printDesigns.get(design)}, size ${size}, added to your cart.`;
+  status.textContent = `${window.productName(getProduct(id), print)}, ${printDesigns.get(design)}, size ${size}, added to your cart.`;
 }
 
 productGrid.addEventListener('submit', event => {
@@ -378,8 +387,9 @@ productGrid.addEventListener('submit', event => {
 
 function showProduct(id, requestedPrint) {
   const product = getProduct(id);
-  const [name, colour, price, , , defaultPrint] = product;
+  const [, colour, price, , , defaultPrint] = product;
   const print = puzzlePrints.has(requestedPrint) ? requestedPrint : defaultPrint;
+  const name = window.productName(product, print);
   const design = 'ledger';
   productDialog.innerHTML = `${closeButton}
     <div class="product-visual">${teePreview(product, print, design)}</div>
@@ -403,14 +413,15 @@ function showBag(checkout = false) {
   const total = bag.reduce((sum, line) => sum + getProduct(line.id)[2] * line.quantity, 0);
   const lines = bag.map((line, index) => {
     const product = getProduct(line.id);
-    const [name, colour, price, id] = product;
+    const [, colour, price, id] = product;
+    const name = window.productName(product, line.print);
     return `<li class="bag-line" data-item="${id}" data-size="${line.size}">
       ${teePreview(product, line.print, line.design)}
-      <div><strong>${name}</strong><p>${colour} / ${line.size}</p><p>Puzzle #${line.print} · ${puzzlePrints.get(line.print).label} · ${printDesigns.get(line.design)}</p>
+      <div><strong>${name}</strong><p>${colour} / ${line.size}</p><p>${puzzlePrints.get(line.print).label} · ${printDesigns.get(line.design)}</p>
       ${checkout ? `<p>Qty ${line.quantity}</p>` : `<div class="quantity">
-        <button data-index="${index}" data-step="-1" aria-label="${line.quantity === 1 ? 'Remove' : 'Decrease quantity of'} ${name}, puzzle ${line.print}, ${printDesigns.get(line.design)}, size ${line.size}">−</button>
+        <button data-index="${index}" data-step="-1" aria-label="${line.quantity === 1 ? 'Remove' : 'Decrease quantity of'} ${name}, ${colour}, ${printDesigns.get(line.design)}, size ${line.size}">−</button>
         <span>${line.quantity}</span>
-        <button data-index="${index}" data-step="1" aria-label="Increase quantity of ${name}, puzzle ${line.print}, ${printDesigns.get(line.design)}, size ${line.size}" ${line.quantity >= 99 ? 'disabled' : ''}>+</button>
+        <button data-index="${index}" data-step="1" aria-label="Increase quantity of ${name}, ${colour}, ${printDesigns.get(line.design)}, size ${line.size}" ${line.quantity >= 99 ? 'disabled' : ''}>+</button>
       </div>`}</div>
       <span>${money.format(price * line.quantity)}</span>
     </li>`;

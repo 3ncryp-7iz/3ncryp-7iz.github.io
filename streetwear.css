@@ -1,0 +1,177 @@
+.postal.streetwear {
+  --page: #151515;
+  --panel: #1d1d1b;
+  --paper-light: #222220;
+  --ink: #f6f4e9;
+  --line: #50504a;
+  --accent: #dfef68;
+  --on-accent: #151515;
+  --oxblood: #ffa05e;
+  --display: var(--sans);
+  --weight: 700;
+  --edge-space: clamp(1rem, 3.6vw, 4rem);
+  --section-space: clamp(2.75rem, 6vw, 6rem);
+  color-scheme: dark;
+}
+
+.shop-shell { max-width: 100rem; margin-inline: auto; }
+.streetwear .site-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-areas: "brand navigation actions";
+  gap: .5rem;
+  padding-block: .75rem;
+}
+.streetwear .wordmark {
+  font: 700 clamp(1.1rem, 2.5vw, 1.65rem)/1 var(--sans);
+}
+.streetwear .site-header .wordmark { font-size: clamp(1.35rem, 3vw, 2.25rem); }
+.streetwear .wordmark small { font: .56rem/1.35 var(--mono); margin-top: .35rem; }
+.streetwear .site-header .section-nav { gap: .25rem; }
+.streetwear .section-nav a, .streetwear .bag-button {
+  font: .75rem var(--mono);
+  text-transform: uppercase;
+}
+.streetwear .bag-button:hover, .streetwear .button:hover { background: #f2ff91; filter: none; }
+.streetwear footer {
+  border-color: var(--line);
+  padding-block: 1.5rem;
+}
+.streetwear footer .wordmark { max-width: 30ch; font-size: .875rem; line-height: 1.25; }
+.streetwear footer a { text-align: end; }
+
+.streetwear .shop-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+  gap: clamp(1.25rem, 4vw, 4.5rem);
+  padding-block: 0;
+}
+.streetwear .edition-copy { padding-block: clamp(2.25rem, 6vw, 6rem); }
+.streetwear .shop-hero h1 {
+  font-size: clamp(3.25rem, 8vw, 7.5rem);
+  line-height: .84;
+  letter-spacing: -.09em;
+  text-transform: uppercase;
+}
+.streetwear .shop-hero h1 span { display: block; }
+.streetwear .shop-hero h1 span:last-child { color: var(--accent); }
+.streetwear .edition-copy > p { max-width: 37ch; color: #dddacd; }
+.streetwear .shop-hero figure {
+  width: 100%;
+  align-self: stretch;
+  border-inline: 1px solid var(--line);
+}
+.streetwear .shop-hero figure a,
+.streetwear .shop-hero figure svg { height: 100%; }
+.streetwear .shop-hero figure svg { background: #25211e; }
+.streetwear .button { border-radius: 0; }
+
+.streetwear .collection { border-color: var(--line); }
+.streetwear .section-header h2,
+.streetwear[data-edition="problem-sheet"] #puzzle-title {
+  text-transform: uppercase;
+  line-height: .92;
+  letter-spacing: -.07em;
+}
+.streetwear .catalog-tools {
+  padding-block: .8rem;
+  border-block: 1px solid var(--line);
+}
+.streetwear .catalog-tools label,
+.streetwear .catalog-tools p {
+  font-family: var(--mono);
+}
+.streetwear select {
+  border-radius: 0;
+  background: var(--panel);
+}
+.streetwear .products { gap: 1.5rem .6rem; }
+.streetwear .product-photo,
+.streetwear .lookbook-photo {
+  border-radius: 0;
+  overflow: hidden;
+}
+.streetwear .product-info {
+  margin: .6rem 0 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+}
+.streetwear .product-info h3 { font-size: clamp(.8rem, 1.2vw, 1rem); }
+.streetwear .product-info > span { grid-row: auto; }
+.streetwear .product-info > p { grid-column: 1 / -1; color: #c9c6b9; }
+.streetwear .lookbook { background: var(--panel); }
+
+.streetwear[data-edition="problem-sheet"] .chess-puzzle {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: clamp(1.5rem, 4vw, 4rem);
+  border-color: var(--line);
+}
+.streetwear .puzzle-shirt { width: 100%; }
+.streetwear .shirt-viewport { border-radius: 0; }
+.streetwear .puzzle-shirt figcaption { border-bottom: 1px solid var(--line); }
+.streetwear .puzzle-actions button { border-radius: 0; }
+.streetwear .purchase-summary h2 {
+  font: 700 clamp(1.15rem, 2.2vw, 1.65rem)/1.1 var(--sans);
+  letter-spacing: -.04em;
+}
+.streetwear .shirt-swatches input:checked + .shirt-swatch { outline-color: var(--accent); }
+
+@media (max-width: 760px) {
+  .streetwear .site-header { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand actions" "navigation navigation"; }
+  .streetwear .shop-hero,
+  .streetwear[data-edition="problem-sheet"] .chess-puzzle { grid-template-columns: minmax(0, 1fr); }
+  .streetwear[data-edition="problem-sheet"] .chess-puzzle { grid-template-areas: "intro" "board" "tools"; }
+  .streetwear .shop-hero figure { border: 0; }
+  .streetwear .edition-copy { padding-block: 2.25rem 0; }
+  .streetwear .shop-hero { gap: 1.5rem; padding-bottom: 1rem; }
+  .streetwear .shop-hero h1 { font-size: clamp(3.2rem, 13vw, 6.5rem); }
+}
+
+.streetwear .site-header { border-bottom-color: var(--line); }
+.streetwear .lookbook-photo { border: 1px solid var(--line); }
+.streetwear .shirt-viewport {
+  background: #414141;
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
+}
+
+/* A transparent tile shows the page colour through either treatment. */
+[data-checker-products] .product-photo {
+  --tile-lines: repeating-linear-gradient(135deg, transparent 0 4px, #ffffff24 4px 5px);
+  background: var(--tile-mark, transparent);
+}
+[data-checker-products] .product-photo .tee-preview,
+.streetwear .shirt-art .tee-preview {
+  background: transparent;
+}
+
+@media (width > 920px) {
+  [data-checker-products] .product:is(
+    :nth-child(8n + 2 of .product:not([hidden])),
+    :nth-child(8n + 4 of .product:not([hidden])),
+    :nth-child(8n + 5 of .product:not([hidden])),
+    :nth-child(8n + 7 of .product:not([hidden]))
+  ) .product-photo { --tile-mark: var(--tile-lines); }
+}
+
+@media (width <= 920px) {
+  [data-checker-products] .product:is(
+    :nth-child(4n + 2 of .product:not([hidden])),
+    :nth-child(4n + 3 of .product:not([hidden]))
+  ) .product-photo { --tile-mark: var(--tile-lines); }
+}
+
+.shop-shell {
+  --photo-trim: .75rem;
+  --trim-cross: conic-gradient(from 90deg, var(--accent) 25%, var(--page) 0 50%, var(--accent) 0 75%, var(--page) 0);
+  --photo-repeat: var(--photo-trim);
+}
+.streetwear :is(.shop-hero .puzzle-photo-link, .lookbook-photo) { position: relative; }
+.streetwear :is(.shop-hero .puzzle-photo-link, .lookbook-photo)::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--photo-trim);
+  background: var(--trim-cross) left top / var(--photo-repeat) var(--photo-trim) repeat-x;
+  pointer-events: none;
+}

@@ -406,8 +406,13 @@ window.ledgerCollection = [
 ];
 
 window.garmentLooks = {
+  'streetwear-ivory': { product: 'rook', file: 'streetwear-ivory.webp', x: 254, y: 222, scale: .65 },
+  'streetwear-forest': { product: 'hoodie-forest', file: 'streetwear-forest.webp', x: 260, y: 222, scale: .64 },
   'oxblood-tee': { product: 'queen', file: 'worn-oxblood-tee.webp', x: 256, y: 255, scale: .56 },
   'black-hoodie': { product: 'hoodie-black', file: 'worn-black-hoodie.webp', x: 260, y: 250, scale: .62 },
   'ivory-tee': { product: 'rook', file: 'worn-ivory-tee.webp', x: 257, y: 261, scale: .61 },
   'forest-hoodie': { product: 'hoodie-forest', file: 'worn-forest-hoodie.webp', x: 258, y: 250, scale: .61 }
 };
+
+window.productName = (product, print = product[5]) =>
+  'No. ' + print + ' - ' + (product[7] === 'hoodie' ? 'Hoodie' : 'Tee');
