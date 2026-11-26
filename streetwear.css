@@ -246,6 +246,11 @@
   }
   .streetwear .catalog-tools label { min-width: 0; }
   .streetwear .catalog-tools select { width: 100%; }
-  .streetwear .catalog-tools #catalog-count { margin: 0; text-align: end; align-self: center; }
+  .streetwear .catalog-tools #catalog-count {
+    grid-column: 1 / -1;
+    justify-self: end;
+    margin: 0;
+    text-align: end;
+  }
   .streetwear .catalogue-pages--top:not([hidden]) { grid-column: 1 / -1; }
 }
