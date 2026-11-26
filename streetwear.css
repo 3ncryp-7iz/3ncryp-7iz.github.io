@@ -146,7 +146,7 @@
     transparent 0 var(--hatch-start),
     #ffffff24 calc(var(--hatch-start) + var(--hatch-feather)) calc(var(--hatch-period) - var(--hatch-feather)),
     transparent var(--hatch-period));
-  background-color: #101010;
+  background-color: transparent;
 }
 [data-checker-products] .product-photo .tee-preview,
 .streetwear .shirt-art .tee-preview {
