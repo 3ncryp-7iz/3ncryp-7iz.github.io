@@ -59,17 +59,18 @@
     });
   }
 
-  const colour = document.querySelector('#filter-colour');
-  if (colour) {
-    const garment = document.querySelector('#filter-garment');
+  const garment = document.querySelector('#filter-garment');
+  if (garment) {
+    const colour = document.querySelector('#filter-colour');
     const sort = document.querySelector('#sort-products');
     const grid = document.querySelector('#products');
     const count = document.querySelector('#catalog-count');
     const codedCatalogue = grid.hasAttribute('data-puzzle-catalogue');
-    const catalogueColours = codedCatalogue ? ['Forest', 'Washed black'] : new Set(products.map(product => product[1]));
     const hoodieLook = document.querySelector('[data-hoodie-look]');
     let cards = [...grid.querySelectorAll('.product')];
-    for (const label of catalogueColours) colour.add(new Option(label, label));
+    if (colour) {
+      for (const label of new Set(products.map(product => product[1]))) colour.add(new Option(label, label));
+    }
 
     function updateCatalog() {
       const ordered = [...cards];
@@ -79,7 +80,7 @@
       let sold = 0;
       for (const card of ordered) {
         const product = getProduct(card.dataset.item);
-        card.hidden = Boolean((colour.value && colour.value !== product[1])
+        card.hidden = Boolean((colour?.value && colour.value !== product[1])
           || (garment.value && garment.value !== garmentOf(product)));
         if (!card.hidden) {
           if (card.hasAttribute('data-sold')) sold++;
@@ -96,7 +97,7 @@
     }
 
     garment.addEventListener('change', updateCatalog);
-    colour.addEventListener('change', updateCatalog);
+    colour?.addEventListener('change', updateCatalog);
     sort.addEventListener('change', updateCatalog);
     if (codedCatalogue) {
       const desktop = matchMedia('(width > 920px)');
