@@ -75,15 +75,23 @@
       const ordered = [...cards];
       const order = sort.value === 'price-up' ? 1 : sort.value === 'price-down' ? -1 : 0;
       if (order) ordered.sort((a, b) => order * (getProduct(a.dataset.item)[2] - getProduct(b.dataset.item)[2]));
-      let visible = 0;
+      let available = 0;
+      let sold = 0;
       for (const card of ordered) {
         const product = getProduct(card.dataset.item);
         card.hidden = Boolean((colour.value && colour.value !== product[1])
           || (garment.value && garment.value !== garmentOf(product)));
-        if (!card.hidden) visible++;
+        if (!card.hidden) {
+          if (card.hasAttribute('data-sold')) sold++;
+          else available++;
+        }
         grid.append(card);
       }
-      count.textContent = visible === 1 ? '1 Item available' : visible + ' Items available';
+      if (sold) {
+        count.textContent = available === 1 ? '1 Item remains' : available + ' Items remain';
+      } else {
+        count.textContent = available === 1 ? '1 Item available' : available + ' Items available';
+      }
       if (hoodieLook) hoodieLook.hidden = garment.value !== 'hoodie';
     }
 
