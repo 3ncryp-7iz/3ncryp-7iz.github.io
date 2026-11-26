@@ -2,7 +2,8 @@
   const page = document.querySelector('[data-playable-print]');
   const params = new URLSearchParams(window.location.search);
   const requested = params.get('puzzle')?.padStart(3, '0');
-  const batch = params.get('batch') === '2' || requested?.startsWith('b2-') ? '2' : '1';
+  // Older print URLs had no batch and still point at the original collection.
+  const batch = requested?.startsWith('b2-') || params.get('batch') === '1' ? '1' : '2';
   const batchPrints = window.puzzlePrints.filter(([key]) => window.puzzleBatch(key) === batch);
   const record = batchPrints.find(([key]) => key === requested || window.puzzleNumber(key) === requested)
     ?? batchPrints[0];

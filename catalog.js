@@ -415,7 +415,7 @@ window.garmentLooks = {
 };
 
 window.puzzleNumber = print => window.puzzlePrints.find(([key]) => key === print)?.[4] ?? print;
-window.puzzleBatch = print => print.startsWith('b2-') ? '2' : '1';
+window.puzzleBatch = print => print.startsWith('b2-') ? '1' : '2';
 window.productName = (product, print = product[5]) => {
   const type = product[7] === 'hoodie' ? 'Hoodie' : 'Tee';
   return 'No. ' + window.puzzleNumber(print) + ' - ' + type;
