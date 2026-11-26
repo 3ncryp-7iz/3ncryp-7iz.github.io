@@ -342,21 +342,20 @@
     slidePiece(piece, from, to);
     updateLabels();
     section.dispatchEvent(new CustomEvent('puzzle:move', { detail: { ply, notation } }));
-    return notation;
   }
 
-  function finish(notation, solvedByPlayer = true) {
+  function finish(solvedByPlayer = true) {
     busy = false;
     hintButton.disabled = true;
     showButton.disabled = true;
-    if (solvedByPlayer) feedback.textContent = notation;
+    if (solvedByPlayer) feedback.textContent = line.map(step => step[3]).join(' · ');
     section.dispatchEvent(new Event('puzzle:solved'));
   }
 
   function advancePlayer() {
-    const played = move();
+    move();
     if (ply === line.length) {
-      finish(played);
+      finish();
       return;
     }
     busy = true;
@@ -468,9 +467,9 @@
     hintButton.disabled = true;
     showButton.disabled = true;
     function play() {
-      const notation = move();
+      move();
       if (ply === line.length) {
-        finish(notation, false);
+        finish(false);
         return;
       }
       if (reduceMotion.matches) play();
