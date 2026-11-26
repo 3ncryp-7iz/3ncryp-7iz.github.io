@@ -230,14 +230,15 @@ function puzzlePhoto(product, print, preview, className, design = product[6] ?? 
 function productCard(product, print = product[5], featured = false) {
   const [, colour, price, id] = product;
   const title = window.productName(product, print);
-  const detail = featured ? puzzlePrints.get(print).label : colour;
+  const showColour = garmentOf(product) !== 'tee' || !productGrid.hasAttribute('data-puzzle-catalogue');
+  const detail = featured ? puzzlePrints.get(print).label : showColour ? colour : '';
   const cutout = productGrid.hasAttribute('data-checker-products');
   const preview = teePreview(product, print, undefined, undefined, true, cutout);
   const photo = puzzlePhoto(product, print, preview, 'product-photo');
   return `
   <article class="product" data-item="${id}">
     ${photo}
-    <div class="product-info"><h3>${title}</h3><span>${money.format(price)}</span><p>${detail}</p>${featured ? `<p>${colour}</p>` : ''}</div>
+    <div class="product-info"><h3>${title}</h3><span>${money.format(price)}</span>${detail ? `<p>${detail}</p>` : ''}${featured && showColour ? `<p>${colour}</p>` : ''}</div>
   </article>`;
 }
 
