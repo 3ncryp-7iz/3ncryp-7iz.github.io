@@ -1,6 +1,7 @@
 const storePath = document.currentScript?.src ? new URL('.', document.currentScript.src).href : '../';
 
-const products = window.catalog;
+const streetwear = document.body?.classList.contains('streetwear');
+const products = streetwear ? window.catalog.filter(product => product[7] !== 'hoodie') : window.catalog;
 const productDialog = document.querySelector('#product-dialog');
 const bagDialog = document.querySelector('#bag-dialog');
 const status = document.querySelector('#status');
@@ -112,7 +113,7 @@ function garmentPhoto(id, cutout) {
   const photo = dyed ? 'queen' : id;
   let file = photo + '-blank.webp';
   if (cutout) file = 'checker-product-' + photo + '.webp';
-  else if (document.body?.classList.contains('streetwear')) file = 'streetwear-product-' + photo + '.webp';
+  else if (streetwear) file = 'streetwear-product-' + photo + '.webp';
   return { file, filter: dyed ? 'url(#shirt-dye-' + id + ')' : '' };
 }
 
@@ -332,7 +333,7 @@ if (productGrid.hasAttribute('data-ledger-collection')) {
         <span class="sr-only">${colour}</span>
       </label>`).join('');
 
-    const cutout = document.body?.classList.contains('streetwear');
+    const cutout = streetwear;
     function displayColour(id) {
       const product = getProduct(id);
       artwork.innerHTML = teePreview(product, print, design, null, false, cutout);

@@ -4,7 +4,12 @@
   const requested = params.get('puzzle')?.padStart(3, '0');
   const record = window.puzzlePrints.find(([number]) => number === requested) ?? window.puzzlePrints[0];
   const [number, label] = record;
-  const product = window.catalog.find(item => item[3] === (params.get('product') ?? params.get('colour'))) ?? window.catalog[0];
+  const requestedId = params.get('product') ?? params.get('colour');
+  const requestedProduct = window.catalog.find(item => item[3] === requestedId);
+  const tees = window.catalog.filter(item => item[7] !== 'hoodie');
+  const product = tees.find(item => item[3] === requestedId)
+    ?? tees.find(item => item[1] === requestedProduct?.[1])
+    ?? tees[0];
   const id = product[3];
   const [fen, moves] = window.puzzlePositions[number];
   const [side, mate] = label.split(' · ');

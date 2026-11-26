@@ -61,7 +61,6 @@
 
   const grid = document.querySelector('[data-puzzle-catalogue]');
   if (grid) {
-    const garment = document.querySelector('#filter-garment');
     const mate = document.querySelector('#filter-mate');
     const pageSize = document.querySelector('#catalog-page-size');
     const count = document.querySelector('#catalog-count');
@@ -73,43 +72,32 @@
       next: nav.querySelector('[data-page-step="1"]'),
       status: nav.querySelector('[data-catalog-page-status]')
     }));
-    const hoodieLook = document.querySelector('[data-hoodie-look]');
     const soldPicker = document.querySelector('#preview-sold');
     const desktop = matchMedia('(width > 920px)');
     const forest = getProduct('forest');
     const washedBlack = getProduct('knight');
-    const tees = [...puzzlePrints.keys()].map(print => ({ print }));
-    const hoodies = ['hoodie-forest', 'hoodie-black'].map(id => {
-      const product = getProduct(id);
-      return { print: product[5], product };
-    });
+    const tees = [...puzzlePrints.keys()];
     let page = 0;
 
     function renderCatalogue(revealPreview = false) {
-      const isHoodie = garment.value === 'hoodie';
-      const items = (isHoodie ? hoodies : tees).filter(({ print }) =>
+      const items = tees.filter(print =>
         !mate.value || puzzlePrints.get(print).label.endsWith('mate in ' + mate.value));
       const limit = Number(pageSize.value);
       const pageCount = Math.max(1, Math.ceil(items.length / limit));
       if (revealPreview && soldPicker.value) {
-        const index = items.findIndex(({ print }) => print === soldPicker.value);
+        const index = items.indexOf(soldPicker.value);
         if (index >= 0) page = Math.floor(index / limit);
       }
       page = Math.min(page, pageCount - 1);
       const start = page * limit;
       const columns = desktop.matches ? 5 : 2;
-      grid.innerHTML = items.slice(start, start + limit).map(({ print, product }, index) => {
+      grid.innerHTML = items.slice(start, start + limit).map((print, index) => {
         const darkSquare = (Math.floor(index / columns) + index % columns) % 2 === 1;
-        return productCard(product ?? (darkSquare ? washedBlack : forest), print);
+        return productCard(darkSquare ? washedBlack : forest, print);
       }).join('');
 
-      const available = items.filter(({ print }) => !previewSold.has(print)).length;
-      if (available < items.length) {
-        count.textContent = available === 1 ? '1 Item remains' : available + ' Items remain';
-      } else {
-        count.textContent = available === 1 ? '1 Item available' : available + ' Items available';
-      }
-      if (hoodieLook) hoodieLook.hidden = !isHoodie;
+      const remaining = items.filter(print => !previewSold.has(print)).length;
+      count.textContent = remaining === 1 ? '1 shirt remaining' : remaining + ' shirts remaining';
       for (const { nav, previous, next, status } of pagers) {
         nav.hidden = pageCount === 1;
         previous.disabled = page === 0;
@@ -118,7 +106,7 @@
       }
     }
 
-    for (const control of [garment, mate, pageSize]) {
+    for (const control of [mate, pageSize]) {
       control.addEventListener('change', () => {
         page = 0;
         renderCatalogue();
