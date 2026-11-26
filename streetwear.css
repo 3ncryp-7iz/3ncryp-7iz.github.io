@@ -138,7 +138,8 @@
 
 /* A transparent tile shows the page colour through either treatment. */
 [data-checker-products] .product-photo {
-  --tile-lines: repeating-linear-gradient(135deg, transparent 0 4px, #ffffff24 4px 5px);
+  /* A diagonal repeat projects to 8px on each axis, keeping each stroke on the same pixel phase. */
+  --tile-lines: repeating-linear-gradient(135deg, transparent 0 4.242640687px, #ffffff24 4.242640687px 5.656854249px);
   background: var(--tile-mark, transparent);
 }
 [data-checker-products] .product-photo .tee-preview,
