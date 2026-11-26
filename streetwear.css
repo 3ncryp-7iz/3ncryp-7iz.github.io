@@ -214,7 +214,7 @@
 .streetwear .catalogue-pages:not([hidden]) {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: clamp(.5rem, 2vw, 1.25rem);
   margin-top: 1.5rem;
   font: .75rem var(--mono);
@@ -223,7 +223,6 @@
   margin-inline-start: 0;
 }
 .streetwear .catalogue-pages--top:not([hidden]) {
-  justify-content: flex-end;
   gap: .5rem;
   margin: 0;
   margin-inline-start: auto;
