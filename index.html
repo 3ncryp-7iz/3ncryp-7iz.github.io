@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="editions.css?v=31">
   <link rel="stylesheet" href="streetwear.css?v=19">
   <script defer src="catalog.js?v=48"></script>
-  <script defer src="store.js?v=48"></script>
-  <script defer src="editions.js?v=33"></script>
+  <script defer src="store.js?v=50"></script>
+  <script defer src="editions.js?v=50"></script>
 </head>
 <body class="postal streetwear" data-edition="club-shop">
 <svg class="print-ink-definitions" aria-hidden="true" width="0" height="0">
@@ -63,18 +63,18 @@
     <section class="collection" id="collection">
       <header class="section-header"><h2>Tees &amp; hoodies</h2></header>
       <div class="catalog-tools" aria-label="Catalogue controls">
-        <label>Item type<select id="filter-garment"><option value="">All items</option><option value="tee">T-shirts</option><option value="hoodie">Hoodies</option></select></label>
+        <label>Item type<select id="filter-garment"><option value="tee">T-shirts</option><option value="hoodie">Hoodies</option></select></label>
         <label>Colour<select id="filter-colour"><option value="">All colours</option></select></label>
         <label>Sort by<select id="sort-products"><option value="featured">Featured</option><option value="price-up">Price, low to high</option><option value="price-down">Price, high to low</option></select></label>
-        <p id="catalog-count" role="status">22 Items available</p>
+        <p id="catalog-count" role="status">100 Items available</p>
       </div>
-      <div id="products" class="products" data-checker-products></div>
+      <div id="products" class="products" data-checker-products data-puzzle-catalogue></div>
     </section>
     <section class="collection lookbook" id="lookbook">
       <header class="section-header"><h2>Example wear</h2></header>
       <div class="lookbook-grid">
         <figure data-worn-look="streetwear-ivory"></figure>
-        <figure data-worn-look="streetwear-forest"></figure>
+        <figure data-worn-look="streetwear-forest" data-hoodie-look hidden></figure>
       </div>
     </section>
   </main>

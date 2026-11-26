@@ -66,6 +66,7 @@
     const grid = document.querySelector('#products');
     const count = document.querySelector('#catalog-count');
     const cards = [...grid.querySelectorAll('.product')];
+    const hoodieLook = document.querySelector('[data-hoodie-look]');
     for (const label of new Set(products.map(product => product[1]))) colour.add(new Option(label, label));
 
     function updateCatalog() {
@@ -81,6 +82,7 @@
         grid.append(card);
       }
       count.textContent = visible === 1 ? '1 Item available' : visible + ' Items available';
+      if (hoodieLook) hoodieLook.hidden = garment.value !== 'hoodie';
     }
 
     garment.addEventListener('change', updateCatalog);
