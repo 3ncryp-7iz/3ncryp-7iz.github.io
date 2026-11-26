@@ -138,10 +138,11 @@
 
 /* A transparent tile shows the page colour through either treatment. */
 [data-checker-products] .product-photo {
-  /* A diagonal repeat projects to 8px on each axis, keeping each stroke on the same pixel phase. */
-  --tile-lines: repeating-linear-gradient(135deg, transparent 0 4.242640687px, #ffffff24 4.242640687px 5.656854249px);
-  background: var(--tile-mark, transparent);
+  background-image: var(--tile-mark, none);
+  background-size: 8px 8px;
+  image-rendering: pixelated;
 }
+[data-checker-products] .product-photo .tee-preview { image-rendering: auto; }
 [data-checker-products] .product-photo .tee-preview,
 .streetwear .shirt-art .tee-preview {
   background: transparent;
@@ -153,14 +154,14 @@
     :nth-child(8n + 4 of .product:not([hidden])),
     :nth-child(8n + 5 of .product:not([hidden])),
     :nth-child(8n + 7 of .product:not([hidden]))
-  ) .product-photo { --tile-mark: var(--tile-lines); }
+  ) .product-photo { --tile-mark: url(assets/catalogue-hatch.png); }
 }
 
 @media (width <= 920px) {
   [data-checker-products] .product:is(
     :nth-child(4n + 2 of .product:not([hidden])),
     :nth-child(4n + 3 of .product:not([hidden]))
-  ) .product-photo { --tile-mark: var(--tile-lines); }
+  ) .product-photo { --tile-mark: url(assets/catalogue-hatch.png); }
 }
 
 .shop-shell {
