@@ -61,6 +61,7 @@
 
   const grid = document.querySelector('[data-puzzle-catalogue]');
   if (grid) {
+    const batch = document.querySelector('#filter-batch');
     const mate = document.querySelector('#filter-mate');
     const pageSize = document.querySelector('#catalog-page-size');
     const count = document.querySelector('#catalog-count');
@@ -77,10 +78,16 @@
     const forest = getProduct('forest');
     const washedBlack = getProduct('knight');
     const tees = [...puzzlePrints.keys()];
+    const initialBatch = new URLSearchParams(window.location?.search).get('batch');
+    if (initialBatch === '2') batch.value = '2';
+
+    function batchPrints() {
+      return tees.filter(print => window.puzzleBatch(print) === batch.value);
+    }
     let page = 0;
 
     function renderCatalogue(revealPreview = false) {
-      const items = tees.filter(print =>
+      const items = batchPrints().filter(print =>
         !mate.value || puzzlePrints.get(print).label.endsWith('mate in ' + mate.value));
       const limit = Number(pageSize.value);
       const pageCount = Math.max(1, Math.ceil(items.length / limit));
@@ -123,19 +130,38 @@
       next.addEventListener('click', () => changePage(1));
     }
 
-    for (const print of puzzlePrints.keys()) soldPicker.add(new Option('No. ' + print, print));
-    soldPicker.value = [...previewSold].find(print => puzzlePrints.has(print)) ?? '';
-    soldPicker.addEventListener('change', () => {
-      previewSold.clear();
-      if (soldPicker.value) previewSold.add(soldPicker.value);
+    function updateSoldPicker() {
+      soldPicker.replaceChildren(new Option('None', ''));
+      for (const print of batchPrints()) {
+        soldPicker.add(new Option('No. ' + window.puzzleNumber(print), print));
+      }
+      soldPicker.value = batchPrints().find(print => previewSold.has(print)) ?? '';
+    }
+
+    function updatePreviewUrl() {
       try {
         const url = new URL(window.location.href);
-        if (soldPicker.value) url.searchParams.set('sold', soldPicker.value);
-        else url.searchParams.delete('sold');
+        if (batch.value === '2') url.searchParams.set('batch', '2');
+        else url.searchParams.delete('batch');
+        url.searchParams.delete('sold');
+        for (const print of previewSold) url.searchParams.append('sold', print);
         window.history.replaceState(window.history.state, '', url);
       } catch {
         // The preview also works when local file history cannot be updated.
       }
+    }
+
+    batch.addEventListener('change', () => {
+      page = 0;
+      updateSoldPicker();
+      updatePreviewUrl();
+      renderCatalogue();
+    });
+    updateSoldPicker();
+    soldPicker.addEventListener('change', () => {
+      for (const print of batchPrints()) previewSold.delete(print);
+      if (soldPicker.value) previewSold.add(soldPicker.value);
+      updatePreviewUrl();
       renderCatalogue(true);
     });
 

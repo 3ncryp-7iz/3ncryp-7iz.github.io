@@ -414,5 +414,10 @@ window.garmentLooks = {
   'forest-hoodie': { product: 'hoodie-forest', file: 'worn-forest-hoodie.webp', x: 258, y: 250, scale: .61 }
 };
 
-window.productName = (product, print = product[5]) =>
-  'No. ' + print + ' - ' + (product[7] === 'hoodie' ? 'Hoodie' : 'Tee');
+window.puzzleNumber = print => print.replace(/^b2-/, '');
+window.puzzleBatch = print => print.startsWith('b2-') ? '2' : '1';
+window.productName = (product, print = product[5]) => {
+  const difficulty = window.puzzlePrints.find(([key]) => key === print)?.[4];
+  const type = product[7] === 'hoodie' ? 'Hoodie' : 'Tee';
+  return 'No. ' + window.puzzleNumber(print) + ' - ' + type + (difficulty ? ' · ' + difficulty : '');
+};

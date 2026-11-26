@@ -183,7 +183,7 @@ function teePreview(product, print, design = product[6] ?? 'classic', look, incl
   if (design === 'ledger') {
     const statement = label.replace(' · ', ' - ');
     ornament = `<g fill="${ink}" opacity=".9" text-anchor="middle" font-family="Georgia, serif">
-      <text x="256" y="127" font-size="13" letter-spacing="2.7">PUZZLE № ${print}</text>
+      <text x="256" y="127" font-size="13" letter-spacing="2.7">PUZZLE № ${window.puzzleNumber(print)}</text>
       <path d="M151 135H361M151 345H361" stroke="${ink}" stroke-width="1.1"/>
       <text x="256" y="362" font-size="9.5" letter-spacing=".85">${statement.toUpperCase()}</text>
     </g>`;
@@ -237,7 +237,8 @@ function puzzlePhoto(product, print, preview, className, design = product[6] ?? 
   const [, colour, , id] = product;
   const name = window.productName(product, print);
   const sold = previewSold.has(print);
-  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}${sold ? '&amp;sold=' + print : ''}" aria-label="View ${name}, ${colour}${sold ? ', sold' : ''}">${preview}</a>`;
+  const batch = window.puzzleBatch(print) === '2' ? '&amp;batch=2' : '';
+  return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${window.puzzleNumber(print)}&amp;product=${id}&amp;style=${design}${batch}${sold ? '&amp;sold=' + print : ''}" aria-label="View ${name}, ${colour}${sold ? ', sold' : ''}">${preview}</a>`;
 }
 
 function productCard(product, print = product[5], featured = false) {

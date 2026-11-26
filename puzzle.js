@@ -185,7 +185,7 @@
   function reset(entrance) {
     clearTimeout(timer);
     for (const token of setupTokens.splice(0)) token.remove();
-    if (animateSetup) board.setAttribute('aria-busy', 'false');
+    if (shirtView) board.setAttribute('aria-busy', 'false');
     position = { ...opening };
     appearances = { ...pieces };
     pendingPromotion = false;
@@ -219,6 +219,43 @@
     animate(piece, frames, 0, duration);
   }
 
+  function dropPiece(token, square) {
+    if (!token.animate) return 0;
+    const file = files.indexOf(square[0]);
+    const row = 8 - Number(square[1]);
+    const delay = (file * 2 + row) * 29;
+    const duration = 460;
+    const tilt = file % 2 ? 13 : -13;
+    token.animate([
+      { transform: `translateY(-155%) rotate(${tilt}deg) scale(.87)`, opacity: 0, easing: 'cubic-bezier(.55,.05,.85,.45)' },
+      { transform: 'translateY(7%) rotate(0deg) scale(1.06,.94)', opacity: 1, offset: .72, easing: 'ease-out' },
+      { transform: 'translateY(-8%) scale(.99,1.01)', offset: .87, easing: 'ease-in' },
+      { transform: 'translateY(0) scale(1)' }
+    ], { delay, duration, fill: 'backwards' });
+    return delay + duration;
+  }
+
+  function playOpeningWave() {
+    setupPlayed = true;
+    reset(false);
+    if (reduceMotion.matches) return;
+
+    const waveEnd = Math.max(...Object.entries(position).map(([id, square]) =>
+      dropPiece(tokens.get(id), square)));
+    if (waveEnd <= 0) return;
+
+    busy = true;
+    hintButton.disabled = true;
+    showButton.disabled = true;
+    board.setAttribute('aria-busy', 'true');
+    timer = setTimeout(() => {
+      busy = false;
+      hintButton.disabled = false;
+      showButton.disabled = false;
+      board.setAttribute('aria-busy', 'false');
+    }, waveEnd);
+  }
+
   function playSetup() {
     setupPlayed = true;
     reset(false);
@@ -250,20 +287,7 @@
       const cell = squares.get(square);
       cell.append(token);
       cell.setAttribute('aria-label', square + ', ' + appearance[1]);
-      if (token.animate) {
-        const file = files.indexOf(square[0]);
-        const row = 8 - Number(square[1]);
-        const delay = (file * 2 + row) * 29;
-        const duration = 460;
-        const tilt = file % 2 ? 13 : -13;
-        token.animate([
-          { transform: `translateY(-155%) rotate(${tilt}deg) scale(.87)`, opacity: 0, easing: 'cubic-bezier(.55,.05,.85,.45)' },
-          { transform: 'translateY(7%) rotate(0deg) scale(1.06,.94)', opacity: 1, offset: .72, easing: 'ease-out' },
-          { transform: 'translateY(-8%) scale(.99,1.01)', offset: .87, easing: 'ease-in' },
-          { transform: 'translateY(0) scale(1)' }
-        ], { delay, duration, fill: 'backwards' });
-        waveEnd = Math.max(waveEnd, delay + duration);
-      }
+      waveEnd = Math.max(waveEnd, dropPiece(token, square));
     }
 
     function playPly(index) {
@@ -478,10 +502,10 @@
     play();
   });
 
-  if (animateSetup && replaySetup) {
+  const playEntrance = animateSetup ? playSetup : playOpeningWave;
+  if (shirtView && replaySetup) {
     replaySetup.hidden = false;
-    replaySetup.addEventListener('click', playSetup);
-
+    replaySetup.addEventListener('click', playEntrance);
   }
   reset(false);
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
@@ -489,12 +513,12 @@
       if (!entry.isIntersecting) return;
       observer.disconnect();
       if (!setupPlayed && ply === 0 && !selected) {
-        if (animateSetup) playSetup();
+        if (shirtView) playEntrance();
         else layOut(true);
       }
     }, { threshold: 0.25 });
     observer.observe(board);
-  } else if (animateSetup && !reduceMotion.matches) {
-    playSetup();
+  } else if (shirtView && !reduceMotion.matches) {
+    playEntrance();
   }
 })();

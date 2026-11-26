@@ -1,9 +1,12 @@
 (() => {
   const page = document.querySelector('[data-playable-print]');
   const params = new URLSearchParams(window.location.search);
-  const requested = params.get('puzzle')?.padStart(3, '0');
+  const rawNumber = params.get('puzzle');
+  const requested = params.get('batch') === '2' && /^\d+$/.test(rawNumber ?? '')
+    ? 'b2-' + rawNumber.padStart(3, '0')
+    : rawNumber?.padStart(3, '0');
   const record = window.puzzlePrints.find(([number]) => number === requested) ?? window.puzzlePrints[0];
-  const [number, label] = record;
+  const [number, label, , , difficulty] = record;
   const requestedId = params.get('product') ?? params.get('colour');
   const requestedProduct = window.catalog.find(item => item[3] === requestedId);
   const tees = window.catalog.filter(item => item[7] !== 'hoodie');
@@ -29,7 +32,11 @@
   grid.dataset.featuredPrint = number;
   grid.dataset.featuredDesign = 'ledger';
   document.title = window.productName(product, number) + ' — OffTheBoardClub';
-  page.querySelector('[data-puzzle-number]').textContent = 'Puzzle № ' + number;
+  if (window.puzzleBatch(number) === '2') {
+    document.querySelector('[data-shop-back]')?.setAttribute('href', '../index.html?batch=2#collection');
+  }
+  page.querySelector('[data-puzzle-number]').textContent =
+    'Puzzle № ' + window.puzzleNumber(number) + (difficulty ? ' · ' + difficulty : '');
   page.querySelector('#puzzle-title').textContent = 'Mate in ' + summary + '.';
   page.querySelector('[data-side-to-move]').textContent = side + '.';
 })();
