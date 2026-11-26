@@ -227,7 +227,7 @@ function puzzlePhoto(product, print, preview, className, design = product[6] ?? 
   return `<a class="${className} puzzle-photo-link" href="${storePath}puzzle/index.html?puzzle=${print}&amp;product=${id}&amp;style=${design}" aria-label="View ${name}, ${colour}">${preview}</a>`;
 }
 
-function productCard(product, print = product[5], featured = false, hidden = false) {
+function productCard(product, print = product[5], featured = false) {
   const [, colour, price, id] = product;
   const title = window.productName(product, print);
   const detail = featured ? puzzlePrints.get(print).label : colour;
@@ -235,7 +235,7 @@ function productCard(product, print = product[5], featured = false, hidden = fal
   const preview = teePreview(product, print, undefined, undefined, true, cutout);
   const photo = puzzlePhoto(product, print, preview, 'product-photo');
   return `
-  <article class="product" data-item="${id}"${hidden ? ' hidden' : ''}>
+  <article class="product" data-item="${id}">
     ${photo}
     <div class="product-info"><h3>${title}</h3><span>${money.format(price)}</span><p>${detail}</p>${featured ? `<p>${colour}</p>` : ''}</div>
   </article>`;
@@ -333,17 +333,7 @@ if (productGrid.hasAttribute('data-ledger-collection')) {
   } else {
     displayPurchase(base);
   }
-} else if (productGrid.hasAttribute('data-puzzle-catalogue')) {
-  const tees = products.filter(product => garmentOf(product) === 'tee');
-  const teeByPrint = new Map(window.ledgerCollection.map(([print, id]) => [print, getProduct(id)]));
-  for (const tee of tees) teeByPrint.set(tee[5], tee);
-
-  const teeCards = [...puzzlePrints.keys()].map((print, index) =>
-    productCard(teeByPrint.get(print) ?? tees[index % tees.length], print));
-  const hoodieCards = products.filter(product => garmentOf(product) === 'hoodie')
-    .map(product => productCard(product, product[5], false, true));
-  productGrid.innerHTML = [...teeCards, ...hoodieCards].join('');
-} else {
+} else if (!productGrid.hasAttribute('data-puzzle-catalogue')) {
   const displayed = hoodieGrid ? products.filter(product => garmentOf(product) === 'tee') : products;
   productGrid.innerHTML = displayed.map(product => productCard(product)).join('');
 }

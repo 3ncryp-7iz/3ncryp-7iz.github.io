@@ -65,9 +65,11 @@
     const sort = document.querySelector('#sort-products');
     const grid = document.querySelector('#products');
     const count = document.querySelector('#catalog-count');
-    const cards = [...grid.querySelectorAll('.product')];
+    const codedCatalogue = grid.hasAttribute('data-puzzle-catalogue');
+    const catalogueColours = codedCatalogue ? ['Forest', 'Washed black'] : new Set(products.map(product => product[1]));
     const hoodieLook = document.querySelector('[data-hoodie-look]');
-    for (const label of new Set(products.map(product => product[1]))) colour.add(new Option(label, label));
+    let cards = [...grid.querySelectorAll('.product')];
+    for (const label of catalogueColours) colour.add(new Option(label, label));
 
     function updateCatalog() {
       const ordered = [...cards];
@@ -88,7 +90,28 @@
     garment.addEventListener('change', updateCatalog);
     colour.addEventListener('change', updateCatalog);
     sort.addEventListener('change', updateCatalog);
-    updateCatalog();
+    if (codedCatalogue) {
+      const desktop = matchMedia('(width > 920px)');
+      const forest = getProduct('forest');
+      const washedBlack = getProduct('knight');
+      const hoodies = ['hoodie-forest', 'hoodie-black'].map(getProduct);
+
+      function renderCatalogue() {
+        const columns = desktop.matches ? 5 : 2;
+        const tees = [...puzzlePrints.keys()].map((print, index) => {
+          const darkSquare = (Math.floor(index / columns) + index % columns) % 2 === 1;
+          return productCard(darkSquare ? washedBlack : forest, print);
+        });
+        grid.innerHTML = [...tees, ...hoodies.map(product => productCard(product))].join('');
+        cards = [...grid.querySelectorAll('.product')];
+        updateCatalog();
+      }
+
+      desktop.addEventListener('change', renderCatalogue);
+      renderCatalogue();
+    } else {
+      updateCatalog();
+    }
   }
 
   const proof = document.querySelector('#proof-select');

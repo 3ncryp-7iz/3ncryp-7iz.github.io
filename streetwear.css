@@ -136,7 +136,7 @@
   outline-offset: -1px;
 }
 
-/* A transparent tile shows the page colour through either treatment. */
+/* Match each tile to its item colour, including in filtered views. */
 [data-checker-products] .product-photo {
   --hatch-period: 5.656854249px;
   --hatch-width: 1.414213562px;
@@ -146,25 +146,19 @@
     transparent 0 var(--hatch-start),
     #ffffff24 calc(var(--hatch-start) + var(--hatch-feather)) calc(var(--hatch-period) - var(--hatch-feather)),
     transparent var(--hatch-period));
-  background: var(--tile-mark, transparent);
+  background-color: #101010;
 }
 [data-checker-products] .product-photo .tee-preview,
 .streetwear .shirt-art .tee-preview {
   background: transparent;
 }
 
-@media (width > 920px) {
-  .products[data-checker-products] { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  [data-checker-products] .product:nth-child(even of .product:not([hidden])) .product-photo {
-    --tile-mark: var(--tile-lines);
-  }
+[data-checker-products] .product:is([data-item="knight"], [data-item="hoodie-black"]) .product-photo {
+  background-image: var(--tile-lines);
 }
 
-@media (width <= 920px) {
-  [data-checker-products] .product:is(
-    :nth-child(4n + 2 of .product:not([hidden])),
-    :nth-child(4n + 3 of .product:not([hidden]))
-  ) .product-photo { --tile-mark: var(--tile-lines); }
+@media (width > 920px) {
+  .products[data-checker-products] { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 
 .shop-shell {
