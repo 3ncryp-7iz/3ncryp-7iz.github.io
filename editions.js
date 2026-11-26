@@ -97,7 +97,7 @@
       }).join('');
 
       const remaining = items.filter(print => !previewSold.has(print)).length;
-      count.textContent = remaining === 1 ? '1 shirt remaining' : remaining + ' shirts remaining';
+      count.textContent = remaining + ' remaining';
       for (const { nav, previous, next, status } of pagers) {
         nav.hidden = pageCount === 1;
         previous.disabled = page === 0;
