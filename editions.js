@@ -62,7 +62,7 @@
   const garment = document.querySelector('#filter-garment');
   if (garment) {
     const colour = document.querySelector('#filter-colour');
-    const sort = document.querySelector('#sort-products');
+    const mate = document.querySelector('#filter-mate');
     const grid = document.querySelector('#products');
     const count = document.querySelector('#catalog-count');
     const codedCatalogue = grid.hasAttribute('data-puzzle-catalogue');
@@ -73,20 +73,18 @@
     }
 
     function updateCatalog() {
-      const ordered = [...cards];
-      const order = sort.value === 'price-up' ? 1 : sort.value === 'price-down' ? -1 : 0;
-      if (order) ordered.sort((a, b) => order * (getProduct(a.dataset.item)[2] - getProduct(b.dataset.item)[2]));
       let available = 0;
       let sold = 0;
-      for (const card of ordered) {
+      for (const card of cards) {
         const product = getProduct(card.dataset.item);
+        const label = puzzlePrints.get(card.dataset.print).label;
         card.hidden = Boolean((colour?.value && colour.value !== product[1])
-          || (garment.value && garment.value !== garmentOf(product)));
+          || (garment.value && garment.value !== garmentOf(product))
+          || (mate.value && !label.endsWith('mate in ' + mate.value)));
         if (!card.hidden) {
           if (card.hasAttribute('data-sold')) sold++;
           else available++;
         }
-        grid.append(card);
       }
       if (sold) {
         count.textContent = available === 1 ? '1 Item remains' : available + ' Items remain';
@@ -98,7 +96,7 @@
 
     garment.addEventListener('change', updateCatalog);
     colour?.addEventListener('change', updateCatalog);
-    sort.addEventListener('change', updateCatalog);
+    mate.addEventListener('change', updateCatalog);
     if (codedCatalogue) {
       const desktop = matchMedia('(width > 920px)');
       const forest = getProduct('forest');

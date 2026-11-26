@@ -249,7 +249,7 @@ function productCard(product, print = product[5], featured = false) {
   const preview = teePreview(product, print, undefined, undefined, true, cutout, sold);
   const photo = puzzlePhoto(product, print, preview, 'product-photo');
   return `
-  <article class="product" data-item="${id}"${sold ? ' data-sold' : ''}>
+  <article class="product" data-item="${id}" data-print="${print}"${sold ? ' data-sold' : ''}>
     ${photo}
     <div class="product-info"><h3>${title}</h3><span>${sold ? 'Sold' : money.format(price)}</span>${detail ? `<p>${detail}</p>` : ''}${featured && showColour ? `<p>${colour}</p>` : ''}</div>
   </article>`;
