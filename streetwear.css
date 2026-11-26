@@ -154,12 +154,10 @@
 }
 
 @media (width > 920px) {
-  [data-checker-products] .product:is(
-    :nth-child(8n + 2 of .product:not([hidden])),
-    :nth-child(8n + 4 of .product:not([hidden])),
-    :nth-child(8n + 5 of .product:not([hidden])),
-    :nth-child(8n + 7 of .product:not([hidden]))
-  ) .product-photo { --tile-mark: var(--tile-lines); }
+  .products[data-checker-products] { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  [data-checker-products] .product:nth-child(even of .product:not([hidden])) .product-photo {
+    --tile-mark: var(--tile-lines);
+  }
 }
 
 @media (width <= 920px) {
