@@ -16,9 +16,17 @@ Object.assign(window.puzzleSetups, {
     "keep": "a1 e1 g1 a2 b2 d2 e2 f2 g2 h2 b7 d7 e7 f7 g7 h7 a8 e8 g8",
     "moves": "a1c1 h7h5 c1c2 h5h4 e2f3 h4h3 f3f4 b7b6 g1f3 a8a3 f3e5 a3e3 b2b4 e7e6 e1f1 g8f6 f1g1 e8f8 d2d4 g7g5 a2a3 f8g8 g2g3 g5g4 d7d5"
   },
+  "b2-005": {
+    "keep": "e1 f1 h1 b2 e2 f2 g2 h2 d7 e7 f7 g7 h7 a8 b8 c8 e8",
+    "moves": "b2b4 e7e6 e2e4 b8a6 e4e5 d7d5 a6c7 a8a3 e8f8 f8g8 c8a6 a6d3 d3g6 f1c4 c7b5 e1e2 h1c1 e2f1 f1g1 c4f1"
+  },
   "b2-006": {
     "keep": "d1 e1 h1 b2 e2 f2 g2 h2 a7 f7 g7 h7 d8 e8 g8",
     "moves": "e1d2 g8e7 h2h4 e7d5 d2c1 e8f8 h4h5 f8g8 c1b1 h7h6 d1c2 g8h7 h1c1 d8h4 f2f3 h4b4 c2c6 d5c3 e2e4 c3d1 a7a6"
+  },
+  "b2-007": {
+    "keep": "a1 d1 e1 f1 h1 a2 b2 c2 f2 g2 h2 a7 e7 f7 g7 h7 a8 d8 e8 f8",
+    "moves": "f2f3 e7e5 d1e2 a7a5 e2c4 f8e7 e1d2 a5a4 a1c1 e7f6 h2h4 d8d3 g2g4 e5f4 g4f5 a4a3 b2b3 e8f8 d2c3 f8g8 c3b2 d3e3 b2b1 a8e8 c1d1 d1d6 d6c6 c4d5 f1a6 d5c4"
   },
   "b2-008": {
     "keep": "a1 e1 g2 a7 c7 h7 a8 e8 f8 h8",
@@ -56,6 +64,10 @@ Object.assign(window.puzzleSetups, {
     "keep": "a1 e1 h1 a2 c2 g2 h2 a7 b7 c7 g7 h7 a8 e8 h8",
     "moves": "e1f2 h8f8 h1f1 f8f4 f2g1 f4c4 a1d1 e8f8 c2c3 f8g8 a8e8 e8e7"
   },
+  "b2-017": {
+    "keep": "a1 d1 e1 f1 g1 h1 a2 c2 f2 g2 h2 a7 b7 e7 f7 a8 b8 c8 d8 e8 h8",
+    "moves": "g1f3 b8d7 f1d3 e7e6 h1f1 d8c7 f3d4 c7c6 e1e2 e8e7 f1e1 h8h7 e2f1 h7g7 f1g1 e1f1"
+  },
   "b2-018": {
     "keep": "a1 b1 e1 a2 d2 f2 g2 h2 c7 d7 a8 e8 f8",
     "moves": "e1f1 d7d5 f1g1 d5d4 b1c3 e8e7 c3e4 e7e6 d2d3 c7c5 a2a4 f8d6 h2h3 a8b8 a1a2"
@@ -75,6 +87,14 @@ Object.assign(window.puzzleSetups, {
   "b2-022": {
     "keep": "d1 e1 g1 b2 d2 e2 f2 h2 a7 d7 e7 f7 g7 d8 e8 f8",
     "moves": "h2h4 e7e6 g1f3 a7a5 d2d4 f8e7 f3g5 d7d5 b2b3 e8f8 d1d3 f8g8 e2e4 d8b8 e4e5 b8b4 e1f1 f1g2 g2g3"
+  },
+  "b2-023": {
+    "keep": "a1 e1 a2 c2 f2 g2 h2 d7 e7 f7 g7 h7 a8 e8",
+    "moves": "c2c4 d7d5 c4c5 e7e6 c5d6 a8b8 a1c1 e8e7 d6d7 e1f1 f1g1 c1c8"
+  },
+  "b2-024": {
+    "keep": "a1 b1 d1 e1 h1 a2 b2 d2 e2 f2 g2 h2 a7 c7 g7 h7 a8 b8 d8 e8 h8",
+    "moves": "a2a3 b8d7 d1a4 d7f8 a4a5 d8g5 e2e4 e8d8 e1f1 d8c8 f1g1 g5f4 d2d4 a8b8 b1d2 b8b7 a1c1 d4d5 d2c4 g1f1 f1e2 h1d1 e2f1 f1g1 d1d3 d3b3 b3b5 b5c5"
   },
   "b2-025": {
     "keep": "d1 e1 c2 d8 e8",
@@ -96,6 +116,10 @@ Object.assign(window.puzzleSetups, {
     "keep": "a1 c1 e1 h1 a2 b2 f2 g2 h2 a7 b7 f7 g7 h7 a8 b8 e8 f8 h8",
     "moves": "c1e3 b8d7 a1d1 a8c8 e1e2 c8c2 e2f3 a7a6 h1e1 a6b5 e3b6 e8d8 d8c8"
   },
+  "b2-030": {
+    "keep": "a1 c1 d1 e1 h1 a2 b2 d2 f2 g2 h2 a7 b7 c7 f7 g7 h7 a8 d8 e8 h8",
+    "moves": "e1f1 e8f8 b2b3 b7c6 d2d3 d8d5 c1e3 f8g8 a2a4 a8e8 d1c2 e8e6 a1c1 g8f8 e3d4 f8e7 f1e2 h8e8 h1e1 e7f8 e2f1 f8g8 f1g1"
+  },
   "b2-031": {
     "keep": "e1 h1 a2 c2 g2 h2 e7 f7 g7 h7 a8 d8 e8",
     "moves": "c2c4 e7e5 c4c5 d8d2 e1f1 d2f2 f1g1 e5e4 c5c6 e8f8 c6c7 f8g8 h2h4 e4e3 g1h2 e3e2 h1d1 d1d7"
@@ -115,6 +139,10 @@ Object.assign(window.puzzleSetups, {
   "b2-035": {
     "keep": "b1 d1 e1 h1 a2 b2 c2 d2 e2 g2 h2 a7 b7 d7 e7 f7 h7 a8 d8 e8 h8",
     "moves": "h1f1 b7b5 a2b3 a7a6 h2h3 e7e5 e2e4 d8e7 d2d3 h8g8 b1c3 g8g6 d1c1 d7d5 c1h6 d5d4 c3d5 e8f8 e1f2 f8g8 d5f6 g8h8 f2g1"
+  },
+  "b2-036": {
+    "keep": "c1 d1 e1 g1 h1 a2 b2 f2 g2 h2 a7 b7 f7 g7 h7 a8 b8 d8 e8 f8 h8",
+    "moves": "d1f3 b8c6 b2b3 f8e7 c1f4 d8b6 e1f1 e8f8 f3e4 e7f6 g1f3 f8e7 f1g1 h8d8 g1f1 e7f8 f1e2 f8g8 h1e1 d8d5 e2f1 f1g1"
   },
   "b2-037": {
     "keep": "a1 d1 e1 b2 d2 g2 h2 d7 e7 f7 g7 h7 a8 c8 d8 e8",
@@ -155,6 +183,14 @@ Object.assign(window.puzzleSetups, {
   "b2-046": {
     "keep": "a1 e1 g2 h2 a7 g7 a8 e8",
     "moves": "a1a6 g7g5 a6b6 e8f7 h2h3 f7g6 e1f2 a8g8 g2g3 g8g7 f2g2 a7a6 g6h5"
+  },
+  "b2-047": {
+    "keep": "a1 b1 d1 e1 f1 h1 a2 b2 f2 g2 h2 a7 b7 g7 h7 a8 d8 e8 f8 h8",
+    "moves": "d1f3 d8c7 b1d2 h7h6 f3f7 f8d6 f1b5 e8d7 d2e4 d7c8 b5c6 c7e7 e1e2 e7e5 h1c1 e2f1 f1g1 c1f1"
+  },
+  "b2-048": {
+    "keep": "d1 e1 h1 b2 d2 f2 g2 h2 f7 g7 h7 a8 d8 e8",
+    "moves": "d2e3 d8d3 g2g3 g7h6 b2b4 h7g6 b4b5 a8a6 e1f1 a6f6 b5b6 e8f8 b6b7 d3e2 f1g2 f8g7 g2h3 d1f1 f1g2 h1d1 d1d8 d8h8 b7b8q"
   },
   "b2-049": {
     "keep": "a1 d1 e1 f1 h1 b2 c2 e2 h2 a7 b7 c7 d7 a8 d8 e8 h8",
@@ -220,6 +256,10 @@ Object.assign(window.puzzleSetups, {
     "keep": "a1 b1 e1 h1 g2 h2 a7 c7 e7 f7 g7 h7 d8 e8 f8",
     "moves": "e1e2 g7f6 a1a3 d8d2 a3g3 c7c6 b1a3 e7e6 a3c4 d2c1 h1d1 f8h6 d1d8 h6g5 e8f8 f8g7 d8g8 g7h6"
   },
+  "b2-065": {
+    "keep": "d1 e1 g1 h1 b2 f2 g2 h2 a7 b7 d7 f7 g7 h7 a8 e8 f8 g8 h8",
+    "moves": "h2h3 g7g6 d1b3 g8h6 e1f1 h6f5 b3c4 d7d5 b2b3 d5d4 g1f3 f8g7 f3e5 e8f8 f2f4 f8e7 f1f2 h8e8 h1d1 e7f8 f2g1"
+  },
   "b2-066": {
     "keep": "d1 e1 g2 h2 g7 h7 d8 e8",
     "moves": "d1d7 e8f7 e1d2 f7g6 d2d3 d8a5 d3d4 a5a1 d4d5 g2g4"
@@ -235,6 +275,18 @@ Object.assign(window.puzzleSetups, {
   "b2-069": {
     "keep": "c1 d1 e1 f1 a2 b2 c2 g2 h2 a7 b7 c7 d7 f7 d8 e8 f8 h8",
     "moves": "c2c3 f8e7 f1c4 f7f6 c4b3 e8f8 c1d2 f8g7 h2h3 c7c6 e1f1 d7d5 f1g1 d8d6 d1h5 d5d4 h5e8"
+  },
+  "b2-070": {
+    "keep": "a1 d1 e1 h1 a2 b2 c2 d2 f2 g2 h2 a7 b7 c7 g7 h7 a8 c8 d8 e8 h8",
+    "moves": "e1f1 c7c5 f1g1 e8f7 d1h5 f7g8 a1e1 d8d5 c2c3 b7c6 h2h3 c8a6 h5g5 a8d8 d2d3 g8f7 e1e3 h8f8 g1h2 f7g8 h1e1 g8h8 h2g1 f8f7 e3g3 f7b7 e1e7 b7b8 g3e3"
+  },
+  "b2-071": {
+    "keep": "a1 d1 e1 g1 h1 a2 d2 f2 g2 h2 a7 b7 f7 g7 h7 a8 d8 e8 f8 h8",
+    "moves": "a2a4 a7a6 e1f1 a8b8 g1f3 f8d6 a1b1 d8b6 d2d4 h7h6 d4d5 e8f8 d1d3 f8g8 f1e2 g8h7 h1d1 h8d8 e2f1 h7g8 f1g1 b8c8 c8c2 c2b2"
+  },
+  "b2-072": {
+    "keep": "b1 d1 e1 g1 h1 d2 g2 h2 c7 d7 f7 g7 h7 a8 b8 e8 g8 h8",
+    "moves": "g1e2 c7c5 b1a3 g8f6 e1f2 b8a6 h2h4 e8f8 f2g3 f8g8 d1c2 a6b4 d2d4 g7g5 h4h5 f6e4 g3h2 b4d3 a3c4 a8a1 d4d5 d3f2 c4e3 g8g7 c2c3 h8e8 c3f6 g7g8 f6f5"
   },
   "b2-073": {
     "keep": "a1 d1 e1 h1 b2 c2 c7 g7 h7 a8 e8 h8",
@@ -260,9 +312,17 @@ Object.assign(window.puzzleSetups, {
     "keep": "a1 b1 d1 e1 a2 b2 c2 d2 f2 g2 h2 a7 b7 c7 e7 a8 d8 e8 f8 h8",
     "moves": "f2f4 e8f7 e1f1 h8h7 f4g5 f7g8 d1h5 e7e5 h5h6 g8h8 f1g1 e5e4 b1a3 f8b4 d2d4 c7c6 a1f1 b7b5 a3c4 b4e1 c4e3 a7a5 h2h3 b5b4 c2c3 d8c7 g2g4 a8e8"
   },
+  "b2-079": {
+    "keep": "a1 c1 d1 e1 b2 c2 d2 e2 f2 g2 b7 c7 d7 e7 f7 g7 c8 e8 f8 h8",
+    "moves": "d2d4 c7c5 a1a8 h8h2 e2e4 b7b5 d1e2 c5c4 c1e3 e7e6 g2g4 c8b7 e1f1 f8e7 e4e5 b7e4 b2b3 d7d5 f1g1 e8d7 c2c3 e2b2"
+  },
   "b2-080": {
     "keep": "a1 b1 e1 f1 g1 a2 b2 c2 f2 g2 h2 a7 c7 f7 g7 h7 a8 c8 e8 h8",
     "moves": "g2g3 c8g4 b2b3 f7f6 b1c3 c7c5 f1g2 h8f8 e1f1 e8f7 a1e1 a8e8 g2b7 f7g8 g1e2 e2d4 d4c6"
+  },
+  "b2-081": {
+    "keep": "a1 d1 e1 c2 d2 g2 h2 a7 b7 c7 f7 g7 a8 d8 e8 h8",
+    "moves": "a1a4 b7b5 a4g4 b5c4 e1f2 c4d3 f2g3 d3e2 d1f1 d8d4 f1f5 a8b8 c2c3 d4c4 d2d4 b8b6 h2h3 f7e6 g3h2 h8h6 e6d5 h6e6 g7f6 e8f7 e2e1q"
   },
   "b2-082": {
     "keep": "d1 e1 g1 a2 b2 f2 g2 a7 b7 e7 f7 b8 d8 e8 f8",
@@ -275,6 +335,10 @@ Object.assign(window.puzzleSetups, {
   "b2-084": {
     "keep": "d1 e1 a2 b2 c2 g2 h2 g7 h7 d8 e8",
     "moves": "e1f2 d8d3 f2g3 d3f3 h2h4 h7h5 g3h3 g7g6 d1d5 e8f8 d5c5 f8g8 g2g3 a2a4 b2b3"
+  },
+  "b2-085": {
+    "keep": "a1 d1 e1 h1 a2 b2 d2 e2 f2 g2 a7 b7 d7 f7 g7 h7 a8 d8 e8 h8",
+    "moves": "e2e3 h7h6 h1h2 d7d5 d1g4 f7f6 g4e6 e8f8 d2d4 b7b6 a1b1 d8c8 e1d2 a7a5 d2c1 g7g5 g2g3 c8c2 c1d2 f8g7 b1g1 h8c8 d2c1 c8c7 c1b1 a8c8 b1a1 g1b1"
   },
   "b2-086": {
     "keep": "e1 g1 h1 a2 b2 c2 a7 b7 d7 b8 e8 h8",
@@ -308,6 +372,10 @@ Object.assign(window.puzzleSetups, {
     "keep": "d1 e1 h1 c2 g2 b7 d8 e8 f8 h8",
     "moves": "d1b1 f8e7 b1a2 b7b6 e1e2 d8b8 h1d1 b8f4 d1d3 e8d7 g2g4 d7c6 g4g5 h8c8 c8c7"
   },
+  "b2-094": {
+    "keep": "d1 e1 g1 h1 d2 b7 c7 d7 e7 g7 d8 e8 f8 h8",
+    "moves": "g1h3 b7b6 h3g5 h8h7 e1f2 c7c5 d1h5 e7e6 h1f1 e8f7 f2g1 d8e7 d2d4 f7g8 f1f2 g8h8 g5h3 d7d5 c5c4 e7b4 c4b3 h7h6 h6f6 f6f7 f7c7 f8d6 d6f4 f4h6 h3g5"
+  },
   "b2-095": {
     "keep": "a1 e1 f1 b2 g7 e8 f8 h8",
     "moves": "e1f2 g7g5 f2g3 g5g4 a1a6 e8f7 b2b4 f7f6 b4b5 f6f5 a6d6 f8g7 f1c4 g7d4 h8h2"
@@ -323,6 +391,10 @@ Object.assign(window.puzzleSetups, {
   "b2-098": {
     "keep": "a1 d1 e1 h1 a2 b2 c2 d2 a7 b7 c7 f7 a8 c8 d8 e8 h8",
     "moves": "a2a3 d8d7 d2d3 f7f6 e1d2 d7f5 d1g1 h8f8 g1h2 e8f7 a1g1 c7c5 d2c1 c5c4 f7g8 c8d7 d7e8 a8d8 e8g6"
+  },
+  "b2-099": {
+    "keep": "a1 c1 d1 e1 f1 a2 b2 f2 g2 h2 a7 b7 f7 g7 h7 a8 c8 d8 e8 h8",
+    "moves": "d1f3 h7h6 a2a3 d8d6 f1c4 d6c6 c4a2 c8f5 e1f1 g7g6 f1g1 e8f8 c1f4 f5b1 f4e5 f8g8 e5g7 b1d3 a1d1 d3b1 d1d5 g8h7 h8e8 h7g8"
   },
   "b2-100": {
     "keep": "d1 e1 f1 g1 a2 b2 f2 a7 b7 e7 f7 g7 h7 a8 b8 c8 e8",
